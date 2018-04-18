@@ -1,0 +1,545 @@
+.dd3-content a.btn.btn-sm {
+    padding: 0 10px;
+}
+
+.btn-take-client {
+    padding-top: 10px;
+    line-height: 20px;
+    padding-bottom: 10px;
+}
+
+.grid {
+    border: dashed 1px #ddd;
+    padding: 0;
+}
+
+.grid.grid2 {
+    padding-top: 30px;
+    overflow-y: auto;
+}
+
+.grid .form-group.prepared-messages-search-container {
+    margin-bottom: 0px;
+}
+
+.grid .form-group.prepared-messages-search-container {
+    margin-bottom: 0px;
+}
+
+.chat-container {
+    position: relative;
+}
+
+.transaction-bar {
+    position: absolute;
+    height: 4%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-bottom: dashed 1px #ddd;
+    background-color: #fff;
+}
+
+.transaction-bar ul {
+    list-style-type: none;
+    height: 100%;
+}
+
+.transaction-bar li {
+    float: left;
+    padding: 0 10px !important;
+    height: 100%;
+    background-color: #fff;
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.transaction-bar li.pull-right {
+    float: right;
+}
+
+.transaction-bar li:hover {
+    color: #000;
+}
+
+.messages {
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    top: 5%;
+    left: 0;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.send-bar {
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    bottom: 0;
+    left: 0;
+}
+
+.send-bar iframe {
+    width: 100% !important;
+    border: solid 1px #ddd;
+}
+
+.send-bar .text-container {
+    position: relative;
+}
+
+#MessageSend {
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    top: 0;
+    padding: 9px;
+}
+
+.message-container {
+    background-color: #01c0c8;
+    color: #fff;
+    padding: 30px 10px 10px 10px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.message-container.me {
+    background-color: #eee;
+    color: #000;
+    position: relative;
+}
+
+.message-container.me.other-user {
+    background-color: #e2dbae !important;
+}
+.message-container.me.private-message {
+    background-color: #d98551 !important;
+    color:#fff !important;
+}
+.message-container.system {
+    background-color: transparent;
+    color: #000;
+}
+
+.message-container.system .text {
+    text-align: center;
+    display: block;
+}
+
+.message-container .detail {
+    position: absolute;
+    top: 3px;
+    font-size: 11px;
+}
+
+.message-container .detail.sender-name {
+    left: 3px;
+}
+
+.message-container .detail.send-time {
+    right: 3px;
+}
+
+.min-message-container {
+    display: flex;
+    height: 42px;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding: 0 10px;
+}
+
+.min-message-container .min-message {
+    padding: 8px 15px;
+    background-color: #8acac9;
+    color: #fff;
+    text-align: center;
+    margin-right: 10px;
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+}
+
+.min-message-container .min-message .unread-message-count {
+    position: absolute;
+    bottom: 12px;
+    background-color: #01c0c8;
+    padding: 2px 9px;
+    color: #fff;
+    right: -10px;
+    border-radius: 80px;
+    font-size: 11px;
+    border: solid 1px #fff;
+}
+
+.min-message-container .min-message.active .unread-message-count {
+    position: absolute;
+    bottom: 0px;
+    background-color: #01c0c8;
+    padding: 2px 9px;
+    color: #fff;
+    right: 0;
+    border-radius: 80px;
+    font-size: 11px;
+}
+
+.min-message-container .min-message.active {
+    background-color: #01c0c8;
+}
+
+.min-message-container .min-message.disabled {
+    background-color: #555;
+}
+
+.min-message.disabled.active {
+    background-color: #111;
+}
+
+#Clones, .clone {
+    display: none !important;
+}
+
+.chat-screen .client-name {
+    font-size: 22px;
+    text-transform: none;
+}
+
+.chat-screen .rpanel-title span {
+    padding: 3px 10px;
+    background-color: #059197;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.chat-screen .rpanel-title span:hover {
+    color: #fff !important;
+    background-color: #05575b;
+}
+
+.chat-screen .rpanel-title span:first-child {
+    margin-right: 0px;
+}
+
+.client-detail-row {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #eee;
+    font-size: 12px;
+}
+
+.client-detail-row .name {
+    padding-left: 10px;
+    font-weight: bold;
+}
+
+.client-detail-row .value {
+    padding-left: 10px;
+}
+
+.prepared-messages.treeview li {
+    font-size: 12px;
+}
+
+#HistorySearchButton {
+    margin-top: 17px;
+}
+
+#LiveSection section {
+    overflow-y: auto;
+    height:100%;
+}
+
+.user-status-text {
+    padding-right: 0px !important;
+}
+
+table.dataTable img {
+    max-height: 15px;
+}
+
+i.user-table-icon {
+    font-size: 18px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+i.user-table-icon.s1 {
+    color: #00ed00;
+}
+
+i.user-table-icon.s2 {
+    color: #fef207;
+}
+
+i.user-table-icon.s3 {
+    color: #ff0000;
+}
+
+i.user-status-icon {
+    background-color: #fff;
+    padding: 5px;
+    font-size: 14px;
+}
+
+i.user-status-icon.s1 {
+    color: #0be20b;
+}
+
+i.user-status-icon.s2 {
+    color: #e1e600;
+}
+
+i.user-status-icon.s3 {
+    color: #e60000;
+}
+
+li.user-status-menu ul {
+    padding: 0px;
+}
+
+li.user-status-menu ul > li a {
+    color: #fff;
+    transition: all ease .3s;
+}
+
+li.user-status-menu ul > li.online-row a {
+    background-color: #0be20b;
+}
+
+li.user-status-menu ul > li.online-row a:hover {
+    color: #0be20b;
+    background-color: #fff;
+}
+
+li.user-status-menu ul > li.busy-row a {
+    background-color: #e1e600;
+}
+
+li.user-status-menu ul > li.busy-row a:hover {
+    color: #e1e600;
+    background-color: #fff;
+}
+
+li.user-status-menu ul > li.out-row a {
+    background-color: #e60000;
+}
+
+li.user-status-menu ul > li.out-row a:hover {
+    color: #e60000;
+    background-color: #fff;
+}
+
+i.facebook-loggedin-client-icon {
+    background-color: #3c62a0;
+    color: #fff;
+    padding: 5px;
+}
+
+.history-messages-container .card {
+    width: 100%;
+}
+
+.history-messages-container .card-body {
+    padding-top: 10px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.history-messages-container .card-header {
+    border-bottom: solid 1px #6a6c6c;
+    background-color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.history-messages-container .card-header button {
+    color: #6a6c6c;
+    text-decoration: none;
+}
+
+.row.recent-message-buttons .col-sm-6.active {
+    background-color: #01c0c8;
+}
+
+.row.recent-message-buttons .col-sm-6 {
+    padding: 5px;
+    background-color: #686868;
+    color: #fff;
+    border: solid 1px #fff;
+    cursor: pointer;
+}
+
+.row.recent-message-buttons {
+    margin-bottom: 10px;
+}
+
+#ContentModal .tab-button-container {
+    padding-top: 25px;
+}
+
+.list-group-item code {
+    float: right;
+}
+
+.shortcuts-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #01c0c8;
+    height: 100%;
+    z-index: 200;
+    width: 100%;
+    opacity: 0.9;
+    color: #fff;
+    overflow-y: auto;
+}
+
+.shortcuts-container ul li {
+    text-align: center;
+    background-color: #90ccd1;
+    border-bottom: solid 1px #fff;
+    cursor: pointer;
+    transition: all ease .2s;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    position: relative;
+}
+
+.shortcuts-container ul li code {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: #000;
+    font-size: 12px;
+}
+
+.shortcuts-container ul li:hover {
+    background-color: #6d8b8f;
+}
+
+.shift-users a h4 {
+    font-size: 15px;
+}
+
+.fc-day {
+    cursor: pointer;
+}
+
+.fc-day:hover, .fc-today:hover {
+    background-color: #cafdff !important;
+}
+
+.fc-day-grid-event:hover {
+    border: solid 2px #23556e;
+}
+
+.fc-day-header.fc-widget-header {
+    cursor: pointer;
+}
+
+#ReportTable td.name {
+    font-weight: bold;
+}
+
+#ReportTable td.value {
+    text-align: right;
+}
+
+.report-detail {
+    display: none;
+}
+
+.col-10.relative {
+    position: relative;
+    padding: 0 40px;
+    height: 42px;
+}
+
+.min-message-direction {
+    position: absolute;
+    top: 0px;
+    background: #aaa;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.min-message-direction.direction-left {
+    left: 0;
+}
+
+.min-message-direction.direction-right {
+    right: 0;
+}
+
+.chat-screen.disabled .chat-transaction {
+    display: none !important;
+}
+
+.chat-transaction {
+    position: relative;
+}
+
+.chat-transaction.active {
+    background-color: #ccc;
+    color: #000;
+}
+
+.chat-transaction ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0px;
+    z-index: 100;
+    color: #000;
+    font-size: 15px;
+    background-color: #ccc;
+    padding: 10px !important;
+    height: auto;
+}
+
+.chat-transaction ul li {
+    padding: 5px !important;
+    color: #000;
+    background-color: #ccc;
+    height: auto;
+    white-space: nowrap;
+    font-size: 16px;
+    float: none !important;
+}
+
+.chat-transaction ul li:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.chat-transaction.active ul {
+    display: block;
+}
+
+#UserListModal table {
+    margin: 0;
+}
+
+#UserListModal .modal-body {
+    padding: 20px;
+}
+
+.add-user-to-visit {
+    display: block;
+    margin: 0 auto;
+}
+#UserBanModal .ban-user-details .text-right {
+    padding-left:20px;
+    text-align:left !important;
+}
+#UserBanModal .ban-user-details img {
+    max-height:15px;
+}
+#UserBanModal .ban-user-details .ban-row {
+    display:none !important;
+}
