@@ -104,6 +104,29 @@ function secondToTime(second) {
     return string;
 }
 
+
+function secondToShortTime(second) {
+    var string = '';
+
+    if (second > 3600) {
+        var hours = parseInt(second / 3600);
+        second %= 3600;
+        string = hours + ' sa ';
+    }
+
+    if (second > 60) {
+        var minutes = parseInt(second / 60);
+        second %= 60;
+        string += minutes + ' dk ';
+    }
+
+    if(string === '') {
+        string = 'yaklaşık 1 dk';
+    }
+
+    return string;
+}
+
 function getBrowser(browserName) {
     var browsers = ['chrome', 'firefox', 'edge', 'explorer', 'safari', 'yandex', 'opera'];
     for (var i = 0; i < browsers.length; i++) {

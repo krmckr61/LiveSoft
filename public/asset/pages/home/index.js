@@ -7,7 +7,7 @@ $(document).ready(function () {
     var skyInterval;
 
     $(".min-message-direction").on('mousedown', function () {
-        if($(this).hasClass('direction-left')) {
+        if ($(this).hasClass('direction-left')) {
             var func = function () {
                 $(".min-message-container")[0].scrollLeft -= 50
             };
@@ -65,11 +65,7 @@ $(document).ready(function () {
 
     $(".chat-screen-container").on("click", '.close-chat', function () {
         var id = $(this).closest('.chat-screen').attr('data-id');
-        if ($(".min-message-container .min-message[data-id='" + id + "']").hasClass('disabled')) {
-            Chat.closeChat(id);
-        } else {
-            Chat.closeChat(id);
-        }
+        Chat.closeChat(id);
     });
 
     $(".chat-screen button.message-send").on("click", function () {
@@ -106,7 +102,7 @@ $(document).ready(function () {
         var shortcutId = $(this).attr('data-id');
         Chat.addLetterShortcutMessage(id, shortcutId);
     });
-    
+
     $(document).on("keydown", null, 'esc', function () {
         $(".chat-screen-container .chat-screen .close-shortcuts").click();
         Chat.focusTextEditor();
@@ -117,8 +113,8 @@ $(document).ready(function () {
     });
 
     $(document).on('keydown', function (event) {
-        if (event.which!==32 && !isNaN(String.fromCharCode(event.which))) {
-            if($(".min-message-container .min-message.active").length > 0) {
+        if (event.which !== 32 && !isNaN(String.fromCharCode(event.which))) {
+            if ($(".min-message-container .min-message.active").length > 0) {
                 Chat.sendShortcut(event.key);
             }
         }
@@ -135,7 +131,7 @@ $(document).ready(function () {
 
     $(".chat-screen-container").on('click', '.chat-transaction .logout-user', function () {
         var cnf = confirm('Görüşmeden ayrılmak istediğinize emin misiniz ?');
-        if(cnf) {
+        if (cnf) {
             var visitId = $(this).closest('.chat-screen').attr('data-id');
             node.logoutUserFromVisit(visitId);
         }
@@ -162,7 +158,7 @@ $(document).ready(function () {
         $("#PrivateMessageModal").attr('data-id', id);
         $("#PrivateMessageModal").modal('show');
     });
-    $(".chat-screen-container").on('click', '.private-message', function () {
+    $(".chat-screen-container").on('click', 'li.private-message', function () {
         $("#PrivateMessageModal").find('input').val('');
         var id = $(this).closest('.chat-screen').attr('data-clientid');
         $("#PrivateMessageModal").attr('data-id', id);
@@ -171,7 +167,7 @@ $(document).ready(function () {
 
     $("#LoginVisitorTable").on('click', '.join-chat', function () {
         var id = $(this).attr('data-id');
-        if(confirm('Bu görüşmeye katılmak istediğinize emin misiniz ?')) {
+        if (confirm('Bu görüşmeye katılmak istediğinize emin misiniz ?')) {
             node.joinVisit(id);
         }
     });
@@ -179,26 +175,26 @@ $(document).ready(function () {
     $("#PrivateMessageForm").on('submit', function () {
         var message = $(this).find('input').val();
         message = message.trim();
-        if(message) {
+        if (message) {
             node.sendPrivateMessage($("#PrivateMessageModal").attr('data-id'), message);
             $("#PrivateMessageModal").modal('hide');
         }
     });
-    
+
     $("#UserBanForm").on('submit', function () {
         var date = $("#UserBanModal input").val();
-        if(date) {
+        if (date) {
             $("#UserBanModal").modal('hide');
             node.banClient($("#UserBanModal").attr('data-id'), date);
         }
     });
 
-    setInterval(function(){
-        $(".time-countup").each(function(index){
+    setInterval(function () {
+        $(".time-countup").each(function (index) {
             var elem = $(".time-countup").eq(index);
             var value = elem.attr('data-date');
             var date = new Date().getTime() - new Date(value).getTime();
-            var string = secondToTime(Math.round(date / 1000));
+            var string = secondToShortTime(Math.round(date / 1000));
             elem.html(string);
         });
     }, 1000);

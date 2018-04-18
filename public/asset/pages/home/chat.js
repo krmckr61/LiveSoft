@@ -391,7 +391,9 @@ Chat.resetUnreadMessageCount = function (id) {
 };
 
 Chat.setScrollbar = function (visitid) {
-    $(".chat-screen[data-id='" + visitid + "'] .messages")[0].scrollTop = $(".chat-screen[data-id='" + visitid + "'] .messages")[0].scrollHeight;
+    if($(".chat-screen[data-id='" + visitid + "']")) {
+        $(".chat-screen[data-id='" + visitid + "'] .messages")[0].scrollTop = $(".chat-screen[data-id='" + visitid + "'] .messages")[0].scrollHeight;
+    }
 };
 
 Chat.getSendingMessage = function (elem) {
