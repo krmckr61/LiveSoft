@@ -301,8 +301,8 @@
                     </div>
                 @endif
                 @if(Auth::user()->can('privateMessage'))
-                    <div class="col-sm-3 text-right">Özel Mesaj Gönder :</div>
-                    <div class="col-sm-9 text-left">
+                    <div class="col-sm-3 text-right ban-row">Özel Mesaj Gönder :</div>
+                    <div class="col-sm-9 text-left ban-row">
                         <button type="button" class="btn btn-xs btn-success private-message" title="Özel Mesaj Gönder">
                             <i
                                     class="fa fa-comment"></i> Özel Mesaj
