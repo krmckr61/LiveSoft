@@ -25,7 +25,7 @@
     <script src="{!! url('asset/plugins/bower_components/datatables/jquery.dataTables.min.js') !!}"></script>
     <script src="{!! url('asset/plugins/bower_components/jquery.pulsate/jquery.pulsate.min.js') !!}"></script>
     <script type="text/javascript" src="{!! url('asset/js/cbpFWTabs.js') !!}"></script>
-    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="http://92.44.112.81:3000/socket.io/socket.io.js"></script>
     <script src="{!! url('asset/node/table.js') !!}"></script>
     <script src="{!! url('asset/node/index.js') !!}"></script>
     <script src="{!! url('asset/pages/home/chat.js') !!}"></script>

@@ -5,7 +5,7 @@ var Node = function () {
 Node.prototype.init = function () {
     var id = $('meta[name=representationId]').attr('content');
     if (id) {
-        this.socket = io.connect('http://localhost:3000', {query: 'representativeId=' + id});
+        this.socket = io.connect('http://92.44.112.81:3000', {query: 'representativeId=' + id});
         this.initSockets();
     } else {
         alert('Bağlantı hatası');
