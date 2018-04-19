@@ -50,6 +50,7 @@ Chat.addChat = function (row, open) {
     chatScreen.removeClass('clone');
     chatScreen.attr('data-id', row.id);
     chatScreen.attr('data-clientid', row.data.id);
+    chatScreen.find('#accordion').attr('id', "accordion" + row.id)
     $(".chat-screen-container").append(chatScreen);
 
     Chat.setClientInfo(row.id, row.data);
@@ -483,17 +484,17 @@ Chat.loadRecentVisits = function (data) {
         if (data.recentVisits.length > 0) {
             var recentVisits = data.recentVisits;
             for (var i = 0; i < recentVisits.length; i++) {
-                this.loadRecentVisit(recentVisits[i]);
+                this.loadRecentVisit(data.visitId, recentVisits[i]);
             }
         }
     }
 };
 
-Chat.loadRecentVisit = function (recentVisit) {
+Chat.loadRecentVisit = function (visitId, recentVisit) {
     var elem = $(".card.clone").clone(true);
-    elem.attr('data-id', recentVisit.id);
-    var headingVisitId = 'HeadingRecentVisit' + recentVisit.id;
-    var collapseVisitId = 'RecentVisit' + recentVisit.id;
+    elem.attr('data-id', visitId + '_' + recentVisit.id);
+    var headingVisitId = 'HeadingRecentVisit' + visitId + '_' + recentVisit.id;
+    var collapseVisitId = 'RecentVisit' + visitId + '_' +  recentVisit.id;
 
     elem.find('.chat-date').html(timestampToDate(recentVisit.created_at));
     elem.find('.chat-user span').html(recentVisit.username);
@@ -504,22 +505,23 @@ Chat.loadRecentVisit = function (recentVisit) {
     elem.find('.card-header').attr('aria-controls', collapseVisitId);
     elem.find('.collapse').attr('aria-labelledby', headingVisitId);
     elem.find('.collapse').attr('id', collapseVisitId);
-    elem.find('.collapse').attr('data-parent', '#accordion');
+    elem.find('.collapse').attr('data-parent', '#accordion' + visitId);
 
-    $(".history-messages-container > #accordion > .row").append(elem);
-    this.loadRecentVisitInfos(recentVisit.id, recentVisit);
+    $(".chat-screen-container .chat-screen[data-id='" + visitId + "'] .history-messages-container > #accordion" + visitId + " > .row").append(elem);
+    this.loadRecentVisitInfos(visitId, recentVisit.id, recentVisit);
 };
 
 Chat.loadRecentVisitMessages = function (data) {
+    console.log(data);
     if (data.messages.length > 0) {
         for (var i = 0; i < data.messages.length; i++) {
             var message = data.messages[i];
-            this.loadRecentVisitMessage(message);
+            this.loadRecentVisitMessage(data.visitId, message);
         }
     }
 };
 
-Chat.loadRecentVisitMessage = function (message) {
+Chat.loadRecentVisitMessage = function (visitId, message) {
     var username = $(".chat-screen-container .chat-screen .card[data-id='" + message.visitid + "'] .chat-user span").html();
 
     var elem = $("#Clones .message-container.clone").clone(true);
@@ -539,42 +541,42 @@ Chat.loadRecentVisitMessage = function (message) {
     } else {
         elem.find('.sender-name').html($(".chat-screen .card[data-id='" + message.visitid + "']").closest('.chat-screen').find('.client-name').html());
     }
-    $(".chat-screen-container .chat-screen .card[data-id='" + message.visitid + "'] .recent-messages").append(elem);
+    $(".chat-screen-container .chat-screen .card[data-id='" + visitId + '_' + message.visitid + "'] .recent-messages").append(elem);
 };
 
-Chat.loadRecentVisitInfos = function (id, recentVisit) {
+Chat.loadRecentVisitInfos = function (visitId, id, recentVisit) {
     var data = recentVisit.data;
     var texts = {Email: 'E-Posta Adresi', NameSurname: 'Adı Soyadı', UserName: 'Kullanıcı Adı', ipAddress: 'IP Adresi'};
     for (var key in data) {
         if (texts[key]) {
-            this.addRecentVisitInfo(id, texts[key], data[key]);
+            this.addRecentVisitInfo(visitId + '_' + id, texts[key], data[key]);
         } else {
             switch (key) {
                 case 'connectionTime':
-                    this.addRecentVisitInfo(id, 'Bağlantı Tarihi', data[key].day + '/' + data[key].month + '/' + data[key].year + ' ' + data[key].hour + ':' + data[key].minute)
+                    this.addRecentVisitInfo(visitId + '_' + id, 'Bağlantı Tarihi', data[key].day + '/' + data[key].month + '/' + data[key].year + ' ' + data[key].hour + ':' + data[key].minute)
                     break;
                 case 'device':
-                    this.addRecentVisitInfo(id, 'İşletim Sistemi', data[key]['os'])
-                    this.addRecentVisitInfo(id, 'Tarayıcı', data[key]['browser'])
+                    this.addRecentVisitInfo(visitId + '_' + id, 'İşletim Sistemi', data[key]['os'])
+                    this.addRecentVisitInfo(visitId + '_' + id, 'Tarayıcı', data[key]['browser'])
                     break;
                 case 'location':
-                    this.addRecentVisitInfo(id, 'Ülke', data[key]['country'])
-                    this.addRecentVisitInfo(id, 'Şehir', data[key]['city'])
+                    this.addRecentVisitInfo(visitId + '_' + id, 'Ülke', data[key]['country'])
+                    this.addRecentVisitInfo(visitId + '_' + id, 'Şehir', data[key]['city'])
                     break;
             }
         }
     }
     if (data.FacebookId) {
-        this.addRecentVisitInfo(id, 'Giriş Türü', '<i class="fa fa-facebook facebook-loggedin-client-icon"></i>');
+        this.addRecentVisitInfo(visitId + '_' + id, 'Giriş Türü', '<i class="fa fa-facebook facebook-loggedin-client-icon"></i>');
     } else {
-        this.addRecentVisitInfo(id, 'Giriş Türü', 'Normal');
+        this.addRecentVisitInfo(visitId + '_' + id, 'Giriş Türü', 'Normal');
     }
-    Chat.addRecentVisitInfo(id, 'Bitiş zamanı', timestampToDate(recentVisit.closed_at));
-    Chat.addRecentVisitInfo(id, 'Chat Süresi', secondToTime(recentVisit.chattime));
+    this.addRecentVisitInfo(visitId + '_' + id, 'Bitiş zamanı', timestampToDate(recentVisit.closed_at));
+    this.addRecentVisitInfo(visitId + '_' + id, 'Chat Süresi', secondToTime(recentVisit.chattime));
     if (recentVisit.active === '2') {
-        Chat.addRecentVisitInfo(id, 'Chati Sonlandıran', 'Kullanıcı');
+        this.addRecentVisitInfo(visitId + '_' + id, 'Chati Sonlandıran', 'Kullanıcı');
     } else {
-        Chat.addRecentVisitInfo(id, 'Chati Sonlandıran', $(".chat-screen-container .chat-screen .card[data-id='" + recentVisit.id + "'] .chat-user span").html());
+        this.addRecentVisitInfo(visitId + '_' + id, 'Chati Sonlandıran', $(".chat-screen-container .chat-screen .card[data-id='" + recentVisit.id + "'] .chat-user span").html());
     }
 };
 
