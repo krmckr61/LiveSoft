@@ -29,8 +29,6 @@ var Content = function () {
             thisContent = content;
         }
 
-        console.log(thisContent);
-
         this.modal.find("form input[name='active'][value='" + thisContent['active'] + "']").iCheck('check');
         this.modal.find("form input[name='type'][value='" + thisContent['type'] + "']").iCheck('check');
         this.modal.find("form input[name='name']").val(thisContent['name']);
@@ -38,7 +36,9 @@ var Content = function () {
         this.modal.find("form input[name='letter']").val(thisContent['letter']);
         this.modal.find("form input[name='number']").val(thisContent['number']);
         if (thisContent['type'] != 'head') {
-            CKEDITOR.instances['Text'].setData(thisContent['content']);
+            setTimeout(function () {
+                CKEDITOR.instances['Text'].setData(thisContent['content']);
+            }, 100);
         }
         if (!thisContent['status'] || thisContent['status'] == '0') {
             this.modal.find("#Save").attr('onclick', "content.save('add')");
