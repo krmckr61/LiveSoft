@@ -6,6 +6,7 @@
 @endsection
 @section('js')
     <script src="/asset/plugins/bower_components/custom-select/custom-select.min.js" type="text/javascript"></script>
+    <script src="/asset/pages/user/edit.js" type="text/javascript"></script>
 @endsection
 @section('content')
     <div class="row">
@@ -58,7 +59,7 @@
                     <div class="form-group">
                         <label class="col-md-12">Kullanıcı Rolleri</label>
                         <div class="col-md-12">
-                            <select class="select2 m-b-10 select2-multiple" multiple="multiple"
+                            <select class="select2 m-b-10 select2-multiple" id="RoleId" multiple="multiple"
                                     data-placeholder="Seçiniz" name="RoleId[]" required>
                                 @if(count($roles) > 0)
                                     @foreach($roles as $role)
@@ -73,7 +74,7 @@
                         <label class="col-md-12">Uzmanlık Konuları</label>
                         <div class="col-md-12">
                             <select class="select2 m-b-10 select2-multiple" multiple="multiple"
-                                    data-placeholder="Seçiniz" name="SubjectId[]" required>
+                                    data-placeholder="Seçiniz" name="SubjectId[]">
                                 @if(count($subjects) > 0)
                                     @foreach($subjects as $subject)
                                         <option value="{!! $subject->id !!}"{!! ((in_array($subject->id, $subjectsOfUser)) ? ' selected' : '') !!}>{!! $subject->name !!}</option>

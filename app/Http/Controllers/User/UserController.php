@@ -108,7 +108,7 @@ class UserController extends Controller
                 if(Config::getConfig('subject') && Auth::user()->can('subject')) {
                     $subjectIds = $request->input('SubjectId');
                     UserSubject::removeFromUserId($id);
-                    if(count($subjectIds) > 0) {
+                    if($subjectIds && count($subjectIds) > 0) {
                         foreach($subjectIds as $subjectId) {
                             $userSubject = new UserSubject();
                             $userSubject->userid = $id;
