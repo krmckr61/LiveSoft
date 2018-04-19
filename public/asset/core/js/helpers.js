@@ -88,17 +88,17 @@ function secondToTime(second) {
     if (second > 3600) {
         var hours = parseInt(second / 3600);
         second %= 3600;
-        string = hours + ' saat ';
+        string = hours + ' sa ';
     }
 
     if (second > 60) {
         var minutes = parseInt(second / 60);
         second %= 60;
-        string += minutes + ' dakika ';
+        string += minutes + ' dk ';
     }
 
     if (second > 1) {
-        string += second + ' saniye';
+        string += second + ' sn';
     }
 
     return string;

@@ -158,6 +158,7 @@ $(document).ready(function () {
         $("#PrivateMessageModal").attr('data-id', id);
         $("#PrivateMessageModal").modal('show');
     });
+
     $(".chat-screen-container").on('click', 'li.private-message', function () {
         $("#PrivateMessageModal").find('input').val('');
         var id = $(this).closest('.chat-screen').attr('data-clientid');
