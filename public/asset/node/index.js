@@ -177,6 +177,10 @@ Node.prototype.initSockets = function () {
         });
     });
 
+    this.socket.on('disconnectCurrentUsers', function () {
+        window.location.replace(getDomain() + 'anotherLogin');
+    });
+
 };
 
 Node.prototype.takeClient = function (id) {

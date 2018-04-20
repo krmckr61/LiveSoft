@@ -512,7 +512,6 @@ Chat.loadRecentVisit = function (visitId, recentVisit) {
 };
 
 Chat.loadRecentVisitMessages = function (data) {
-    console.log(data);
     if (data.messages.length > 0) {
         for (var i = 0; i < data.messages.length; i++) {
             var message = data.messages[i];

@@ -113,4 +113,10 @@ Route::group(['prefix' => '/'], function () {
         Route::get('/{chatId}', $controller . 'getChat');
     });
 
+    Route::group(['prefix' => 'anotherLogin'], function () {
+        Route::get('/', function () {
+            return view('AnotherLogin.index');
+        });
+    });
+
 });

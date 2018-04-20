@@ -101,7 +101,7 @@
                 <ul class="dropdown-menu dropdown-user animated flipInY">
                     <li><a href="{!! url('profile') !!}"><i class="ti-user"></i> Hesap Ayarlarım</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="{{ route('logout') }}"
+                    <li><a id="LogoutLink" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Çıkış
                             Yap</a>
