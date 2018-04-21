@@ -11,7 +11,7 @@ class Message extends Model
 
     public static function getMessages($visitId)
     {
-        return self::where('visitid', $visitId)->get();
+        return self::where('visitid', $visitId)->orderBy('created_at', 'ASC')->get();
     }
 
 }

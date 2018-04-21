@@ -79,7 +79,7 @@ Chat.setHistoryClientInfo = function (visit) {
     if (visit.active === '2') {
         Chat.addClientInfoRow(visit.id, 'Chati Sonlandıran', 'Kullanıcı');
     } else {
-        Chat.addClientInfoRow(visit.id, 'Chati Sonlandıran', visit.username);
+        Chat.addClientInfoRow(visit.id, 'Chati Sonlandıran', visit.closedusername);
     }
 };
 
@@ -91,15 +91,15 @@ Chat.setClientInfo = function (id, data) {
         } else {
             switch (key) {
                 case 'connectionTime':
-                    this.addClientInfoRow(id, 'Bağlantı Tarihi', data[key].day + '/' + data[key].month + '/' + data[key].year + ' ' + data[key].hour + ':' + data[key].minute)
+                    this.addClientInfoRow(id, 'Bağlantı Tarihi', data[key].day + '/' + data[key].month + '/' + data[key].year + ' ' + data[key].hour + ':' + data[key].minute);
                     break;
                 case 'device':
-                    this.addClientInfoRow(id, 'İşletim Sistemi', data[key]['os'])
-                    this.addClientInfoRow(id, 'Tarayıcı', data[key]['browser'])
+                    this.addClientInfoRow(id, 'İşletim Sistemi', data[key]['os']);
+                    this.addClientInfoRow(id, 'Tarayıcı', data[key]['browser']);
                     break;
                 case 'location':
-                    this.addClientInfoRow(id, 'Ülke', data[key]['country'])
-                    this.addClientInfoRow(id, 'Şehir', data[key]['city'])
+                    this.addClientInfoRow(id, 'Ülke', data[key]['country']);
+                    this.addClientInfoRow(id, 'Şehir', data[key]['city']);
                     break;
             }
         }

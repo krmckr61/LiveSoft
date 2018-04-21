@@ -1,66 +1,86 @@
 @extends('layouts.app')
 @section('title') Görüşmeler @endsection
+@section('js')
+    <script type="text/javascript" src="/asset/pages/chat/index.js"></script>
+@endsection
 @section('content')
-    <div class="chat-screen right-sidebar old-chat-screen shw-rside">
-        <div class="slimscrollright">
-            <div class="rpanel-title">
-                <div class="client-name pull-left">{!! $data->NameSurname !!}</div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="r-panel-body">
+    <div class="white-box static-chat-container">
+        <div class="row">
+            <div class="col-sm-12">
                 <div class="row">
-                    <div class="col-md-4 grid chat-container">
-                        <div class="transaction-bar">
-                            <ul>
-                                <li><i class="fa fa-comments"></i> Mesajlaşma</li>
-                            </ul>
-                        </div>
-                        <div class="messages">
+                    <div class="col-sm-6 messages">
+                        @if(count($messages) > 0)
+                            @foreach($messages as $message)
+                                <?php
+                                if ($message->sender == '2') {
+                                    $senderName = $users[$message->userid];
+                                }
+                                ?>
+                                @switch($message->sender)
+                                    @case('2')
+                                    <div class="message-container{!! ($message->private == '1' ? ' me private-message' : ($message->userid == Auth::user()->id ? ' me' : ' me other-user')) !!}">
+                                        <div class="text">
+                                            {!! $message->text !!}
+                                        </div>
+                                        <div class="detail send-time">{!! date('Y-m-d H:i', strtotime($message->created_at)) !!}</div>
+                                        <div class="detail sender-name">{!! $senderName !!}</div>
+                                    </div>
+                                    @break
+                                    @case('1')
+                                    <div class="message-container">
+                                        <div class="text">
+                                            {!! $message->text !!}
+                                        </div>
+                                        <div class="detail send-time">{!! date('Y-m-d H:i', strtotime($message->created_at)) !!}</div>
+                                        <div class="detail sender-name">{!! $data['NameSurname'] !!}</div>
+                                    </div>
+                                    @break
+                                    @case('0')
+                                    <div class="message-container system">
+                                        <div class="text">
+                                            {!! $message->text !!}
+                                        </div>
+                                        <div class="detail send-time">{!! date('Y-m-d H:i', strtotime($message->created_at)) !!}</div>
+                                    </div>
+                                    @break
+                                @endswitch
+                            @endforeach
+                        @endif
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="row">
+                            <div class="col-sm-12 client-infos">
+                                @foreach($dataNames as $dataName)
+                                    @if(isset($data[$dataName['field']]))
+                                        <div class="client-detail-row col-sm-12">
+                                            <div class="name">{!! $dataName['text'] !!}</div>
+                                            <div class="value">{!! $data[$dataName['field']] !!}</div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-sm-3">
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="col-sm-12 grid grid2 client-infos">
-                                    <div class="transaction-bar">
-                                        <ul>
-                                            <li><i class="fa fa-info-circle"></i> Ziyaretçi Bilgileri</li>
-                                        </ul>
-                                    </div>
+                            <div class="col-sm-12 client-infos">
+                                <div class="client-detail-row col-sm-12">
+                                    <div class="name">Görüşme Puanı</div>
+                                    <div class="value">{!! $visit->point ? $visit->point : 'N/A' !!}</div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="col-sm-12 grid grid2">
-                                    <div class="transaction-bar">
-                                        <ul>
-                                            <li><i class="fa fa-folder-open"></i> Hazır İçerikler</li>
-                                        </ul>
-                                    </div>
-                                    <div class="form-group prepared-messages-search-container">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control search"
-                                                   placeholder="Arama">
-                                            <div class="input-group-addon search">
-                                                <i class="fa fa-search"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="prepared-messages"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="col-sm-12 grid grid2">
-                                    <div class="transaction-bar">
-                                        <ul>
-                                            <li><i class="fa fa-clock-o"></i> Konuşma Geçmişi</li>
-                                        </ul>
-                                    </div>
-                                    <div class="history-messages-container">
-                                        <div id="accordion" class="col-sm-12">
-                                            <div class="row">
-
-                                            </div>
-                                        </div>
+                                <div class="client-detail-row col-sm-12">
+                                    <div class="name">Görüşmedeki Temsilciler</div>
+                                    <div class="value">
+                                        @if(count($users))
+                                            <?php $i = 0; ?>
+                                            @foreach($users as $user)
+                                                @if($i != 0)
+                                                    ,
+                                                @endif
+                                                {!! $user !!}
+                                                <?php $i++ ?>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>

@@ -124,12 +124,12 @@ $(document).ready(function () {
         $(this).toggleClass('active');
     });
 
-    $(".chat-screen-container").on('click', '.chat-transaction .add-user', function () {
+    $(".chat-screen-container").on('click', '.add-user', function () {
         var visitId = $(this).closest('.chat-screen').attr('data-id');
         node.getUserList(visitId);
     });
 
-    $(".chat-screen-container").on('click', '.chat-transaction .logout-user', function () {
+    $(".chat-screen-container").on('click', '.logout-user', function () {
         var cnf = confirm('Görüşmeden ayrılmak istediğinize emin misiniz ?');
         if (cnf) {
             var visitId = $(this).closest('.chat-screen').attr('data-id');

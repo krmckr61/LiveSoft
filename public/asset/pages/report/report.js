@@ -122,6 +122,7 @@ Report.prototype.initReportTable = function (data) {
     this.addReportRow('Görüşme Puanı Ortalaması', data.avgVisitPoint ? parseFloat(data.avgVisitPoint).toFixed(2) + ' / 5' : 'N/A');
 
     this.initBlockedWords(data.faultyMessages);
+    this.initLowScoreVisits(data.lowScoreVisits);
     $(".report-detail").show();
     $(".no-report").hide();
 };
@@ -131,6 +132,16 @@ Report.prototype.initBlockedWords = function (faultyMessages) {
     if (faultyMessages.length > 0) {
         for (var i = 0; i < faultyMessages.length; i++) {
             this.addBlockedWordRow(faultyMessages[i]['name'], faultyMessages[i]['text'], faultyMessages[i]['created_at']);
+        }
+    }
+};
+
+Report.prototype.initLowScoreVisits = function (lowScoreVisits) {
+    $("#LowScoreVisits tbody").html('');
+    if(lowScoreVisits.length > 0) {
+        for(var i = 0; i < lowScoreVisits.length; i++) {
+            var visit = lowScoreVisits[i];
+            this.addLowScoreVisitRow(visit.username, visit.point, visit.id);
         }
     }
 };
@@ -152,6 +163,15 @@ Report.prototype.addBlockedWordRow = function (name, value, created_at) {
     $("#BlockedWords tbody").append(elem);
 };
 
+Report.prototype.addLowScoreVisitRow = function (userName, point, visitId) {
+    var elem = $("table.lowscore-hidden tr.clone").clone(true);
+    elem.removeClass('clone');
+    elem.find('td.username').html(userName);
+    elem.find('td.point').html(point);
+    elem.find('td.visitid').html('<a href="/chats/' + visitId + '" target="_blank">@' + visitId + '</a>');
+    $("#LowScoreVisits tbody").append(elem);
+};
+
 Report.prototype.reportToExcell = function () {
     var uri = 'data:application/vnd.ms-excel;base64,'
         ,
@@ -166,7 +186,7 @@ Report.prototype.reportToExcell = function () {
         }
     return function () {
         var name = new moment().format('YYYY-MM-DD');
-        var html = document.getElementById('ReportTable').innerHTML + document.getElementById('BlockedWords').innerHTML;
+        var html = document.getElementById('ReportTable').innerHTML + document.getElementById('BlockedWords').innerHTML + document.getElementById('LowScoreVisits').innerHTML;
         var ctx = {worksheet: name, table: html}
         window.location.href = uri + base64(format(template, ctx))
     }

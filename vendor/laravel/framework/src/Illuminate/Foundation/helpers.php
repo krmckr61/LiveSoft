@@ -971,3 +971,28 @@ if (! function_exists('view')) {
         return $factory->make($view, $data, $mergeData);
     }
 }
+
+function secondsToHours($seconds)
+{
+    $string = '';
+    if($seconds && $seconds > 0) {
+        if ($seconds >= 3600) {
+            $string .= round($seconds / 3600) . ' sa ';
+            $seconds = $seconds % 3600;
+        }
+
+        if ($seconds >= 60) {
+            $string .= round($seconds / 60) . ' dk ';
+            $seconds = $seconds % 60;
+        }
+
+        if ($seconds > 0) {
+            $string .= $seconds . ' sn';
+        }
+    } else {
+        $string = '0';
+    }
+
+    return $string;
+
+}

@@ -32,6 +32,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public static function getName($id)
+    {
+        $row = self::select('name')->find($id);
+        if($row) {
+            return $row->name;
+        } else {
+            return false;
+        }
+    }
+
     public static function get($id) {
         return self::where(function ($query) {
             $query->where('status', '1')

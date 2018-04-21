@@ -64,5 +64,14 @@ class Visit extends Model
     {
         return self::select('data')->where([['visitorid', $clientId], ['active', '!=', '1'], ['created_at', '<', $banDate]])->orderBy('id', 'DESC')->first();
     }
+
+    public static function getLowScoreVisits($users, $startDate, $endDate)
+    {
+        return self::select(DB::raw("visit.id, visit.point, (SELECT STRING_AGG(DISTINCT(users.name), ', ') as username FROM users INNER JOIN visituser ON users.id=visituser.userid WHERE visituser.visitid=visit.id)"))->join('visituser', 'visit.id', '=', 'visituser.visitid')->where(function ($query) use ($users) {
+            foreach($users as $user) {
+                $query->orWhere('visituser.userid', $user);
+            }
+        })->where('visit.point', '!=', NULL)->where([['visit.point', '<', '3'], ['visit.created_at', '>=', $startDate], ['visit.created_at', '<', $endDate]])->get();
+    }
     
 }

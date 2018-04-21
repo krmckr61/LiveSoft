@@ -543,3 +543,7 @@ i.facebook-loggedin-client-icon {
 #UserBanModal .ban-user-details .ban-row {
     display:none !important;
 }
+.static-chat-container .messages {
+    position:relative;
+    height:500px;
+}

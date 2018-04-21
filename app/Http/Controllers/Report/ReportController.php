@@ -11,6 +11,7 @@ use App\User;
 use App\UserOnlineTime;
 use App\UserStatus;
 use App\Visit;
+use App\VisitUser;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -63,6 +64,7 @@ class ReportController extends Controller
         }
 
         $data['faultyMessages'] = Notification::getFaultyMessages($users, $this->startDate, $this->endDate);
+        $data['lowScoreVisits'] = Visit::getLowScoreVisits($users, $this->startDate, $this->endDate);
         $data['users'] = User::getUsersFromIds($users);
         $data['daysCount'] = $this->dayCount;
         $data['dateRange'] = $this->startDate . ' - ' . $this->endDate;

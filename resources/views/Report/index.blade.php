@@ -107,8 +107,53 @@
                         <table class="table table-stripped table-hover" id="BlockedWords">
                             <thead>
                             <tr>
-                                <th colspan="2">
+                                <th colspan="3">
                                     <h3 class="box-title">Yasaklı Kelimeler</h3>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Temsilci
+                                </th>
+                                <th>
+                                    Kelime
+                                </th>
+                                <th>
+                                    Tarih
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="white-box">
+                        <table class="hidden lowscore-hidden">
+                            <tr class="clone">
+                                <td class="username"></td>
+                                <td class="point"></td>
+                                <td class="visitid"></td>
+                            </tr>
+                        </table>
+                        <table class="table table-stripped table-hover" id="LowScoreVisits">
+                            <thead>
+                            <tr>
+                                <th colspan="3">
+                                    <h3 class="box-title">Düşük Puanlı Görüşmeler</h3>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Temsilci
+                                </th>
+                                <th>
+                                    Puan
+                                </th>
+                                <th>
+                                    Görüşme
                                 </th>
                             </tr>
                             </thead>
