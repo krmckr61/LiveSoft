@@ -27,7 +27,7 @@ class ChatController extends Controller
             $data['connectionTime'] = date('Y-m-d H:i:s', strtotime($visit['created_at']));
             $data['closed_at'] = date('Y-m-d H:i:s', strtotime($visit['closed_at']));
             $data['chatTime'] = secondsToHours((strtotime($data['closed_at']) - strtotime($data['connectionTime'])));
-
+            $data['UserName'] = (($data['UserName']) ? $data['UserName'] : 'N/A');
             $data['closedUserName'] = 'Ziyaretçi';
             if ($visit['active'] == 3) {
                 if ($visit['closeduser'] != 0) {
