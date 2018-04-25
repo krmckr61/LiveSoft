@@ -37,6 +37,8 @@ $(document).ready(function () {
     });
 
     $("#HistoryTable").on("click", '.btn-show-history-chat', function () {
+        $("#HistoryTable tr").removeClass('active-table-row');
+        $(this).parent().parent().addClass('active-table-row');
         var id = $(this).attr('data-id');
         node.getHistoryChat(id);
     });
@@ -188,6 +190,23 @@ $(document).ready(function () {
             $("#UserBanModal").modal('hide');
             node.banClient($("#UserBanModal").attr('data-id'), date);
         }
+    });
+
+    $(document).on('keydown', null, 'down', function (e) {
+        Chat.showNextHistoryChat(e);
+    });
+
+    $(document).on('keydown', null, 'up', function (e) {
+        Chat.showPrevHistoryChat(e);
+    });
+
+    $(".history-chat .heads .bar-choosing").on('click', function () {
+        var container = $(this).parent().parent().parent();
+        var target = $(this).attr('data-target');
+        $(".history-chat .heads .bar-choosing").removeClass('active');
+        $(this).addClass('active');
+        container.find('.bar-choosing-container').hide();
+        container.find(target).show();
     });
 
     setInterval(function () {

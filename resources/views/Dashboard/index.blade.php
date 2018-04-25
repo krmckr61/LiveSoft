@@ -331,10 +331,9 @@
 
         <!-- message -->
         <div class="message-container clone">
-            <div class="text">
-            </div>
-            <div class="detail send-time"></div>
             <div class="detail sender-name"></div>
+            <div class="detail send-time"></div>
+            <div class="text"></div>
         </div>
         <!-- message /end -->
 
@@ -385,7 +384,7 @@
         <!-- recent visit /end -->
 
         <!-- chat screen -->
-        <div class="chat-screen right-sidebar clone">
+        <div class="chat-screen current-chat right-sidebar clone">
             <div class="slimscrollright">
                 <div class="rpanel-title">
                     <div class="client-name pull-left"></div>
@@ -436,9 +435,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8 other-grids">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-4 client-info-container">
                                     <div class="col-sm-12 grid grid2 client-infos">
                                         <div class="transaction-bar">
                                             <ul>
@@ -447,7 +446,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 prepared-messages-container">
                                     <div class="col-sm-12 grid grid2">
                                         <div class="transaction-bar">
                                             <ul>
@@ -466,7 +465,7 @@
                                         <div class="prepared-messages"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4 chat-history-container">
                                     <div class="col-sm-12 grid grid2">
                                         <div class="transaction-bar">
                                             <ul>
@@ -488,6 +487,62 @@
                 </div>
             </div>
         </div>
+        <!-- chat screen /end -->
+
+        <!-- history chat screen -->
+        <div class="chat-screen history-chat right-sidebar clone">
+            <div class="slimscrollright">
+                <div class="rpanel-title">
+                    <div class="client-name pull-left"></div>
+                    <span class="close-chat" title="Görüşmeyi Sonlandır">
+                        <i class="fa fa-close"></i>
+                    </span>
+                    <span class="hide-chat" title="Minimize Et">
+                        <i class="fa fa-minus"></i>
+                    </span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="r-panel-body">
+                    <div class="row">
+                        <div class="col-sm-12 heads">
+                            <div class="row">
+                                <div class="col-sm-4 bar-choosing active default-active" data-target=".chat-container"><i class="fa fa-comments"></i> Mesajlaşma</div>
+                                <div class="col-sm-4 bar-choosing" data-target=".client-info-container"><i class="fa fa-info-circle"></i> Ziyaretçi Bilgileri</div>
+                                <div class="col-sm-4 bar-choosing" data-target=".chat-history-container"><i class="fa fa-clock-o"></i> Konuşma Geçmişi</div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 grid chat-container bar-choosing-container">
+                            <div class="shortcuts-container" style="display: none;">
+                                <button class="btn btn-danger btn-block close-shortcuts">Kapat <i
+                                            class="fa fa-times-circle"></i></button>
+                                <ul>
+                                </ul>
+                            </div>
+                            <div class="messages">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 client-info-container bar-choosing-container">
+                            <div class="col-sm-12 grid grid2 client-infos">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 chat-history-container bar-choosing-container">
+                            <div class="col-sm-12 grid grid2">
+                                <div class="history-messages-container">
+                                    <div id="accordion" class="col-sm-12">
+                                        <div class="row">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- chat screen /end -->
+    <!-- history chat screen /end -->
 @endsection

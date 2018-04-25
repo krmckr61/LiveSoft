@@ -246,7 +246,7 @@ table.getChildData = function (id, data) {
     clone.find('.city').html(data.location ? data.location.city : 'N/A');
     clone.find('.browser').html(data.device.browser && getBrowser(data.device.browser) ? '<img src="/asset/image/' + getBrowser(data.device.browser) + '.png">' : 'N/A');
     clone.find('.os').html(data.device.os && getOs(data.device.os) ? '<img src="/asset/image/' + getOs(data.device.os) + '.png">' : 'N/A');
-    clone.find('.connectionTime').html(data.connectionTime.year + '-' + (data.connectionTime.month + 1) + '-' + data.connectionTime.day + ' ' + data.connectionTime.hour + ':' + data.connectionTime.minute);
+    clone.find('.connectionTime').html(connectionTimeToDate(data.connectionTime));
     clone.find('.loginType').html(data.FacebookId ? '<i class="fa fa-facebook facebook-loggedin-client-icon"></i>' : 'Normal');
     clone.find('button.user-ban').attr('data-id', id);
     clone.find('button.join-chat').attr('data-id', id);

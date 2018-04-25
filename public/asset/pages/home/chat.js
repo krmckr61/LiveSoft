@@ -29,11 +29,21 @@ Chat.onResizeChatScreen = function (id) {
     var screen = $(".chat-screen[data-id='" + id + "']");
     screen.height($(window).height() - ($("footer").height() + 30));
     screen.find(".r-panel-body").height(screen.height() - 70);
-    screen.find(".grid").height(screen.find(".r-panel-body").height());
-    screen.find(".grid.grid2").height(screen.find(".r-panel-body").height() - 30);
+    if (screen.hasClass('history-chat')) {
+        screen.find(".grid").height(screen.find(".r-panel-body").height() - 77);
+        screen.find(".grid.grid2").height(screen.find(".r-panel-body").height() - 107);
+    } else {
+        screen.find(".grid").height(screen.find(".r-panel-body").height());
+        screen.find(".grid.grid2").height(screen.find(".r-panel-body").height() - 30);
+    }
     setTimeout(function () {
         screen.find(".send-bar iframe").attr("style", "height:" + (screen.find(".send-bar").height() - screen.find("ul.wysihtml5-toolbar").height()) + "px !important");
     }, 50);
+};
+
+Chat.open = function (id) {
+
+    $(".min-message-container .min-message[data-id='" + id + "']").trigger('click');
 };
 
 Chat.addChat = function (row, open) {
@@ -44,8 +54,7 @@ Chat.addChat = function (row, open) {
 
     $(".min-message-container").append(minimizeChat);
 
-    var chatScreen = $("#Clones .chat-screen.clone").clone(true);
-
+    var chatScreen = $("#Clones .chat-screen.current-chat.clone").clone(true);
     chatScreen.find(".rpanel-title .client-name").html(row.data.NameSurname);
     chatScreen.removeClass('clone');
     chatScreen.attr('data-id', row.id);
@@ -58,29 +67,59 @@ Chat.addChat = function (row, open) {
     this.initPlugins(row.id);
 
     if (open) {
-        minimizeChat.trigger('click');
+        this.open(row.id);
         $(".chat-screen[data-id='" + row.id + "'] .text-editor").data('wysihtml5').editor.focus();
     }
 };
 
 Chat.addHistoryChat = function (row) {
-    if ($(".min-message-container .min-message[data-id='" + row.id + "']").length < 1) {
-        Chat.addChat(row, 1);
-        setTimeout(function () {
-            Chat.disableChat(row.id);
-        }, 50);
+    if ($(".chat-screen-container .chat-screen[data-id=" + row.id + "]").length < 1) {
+        var minimizeChat = $("#Clones .min-message.clone").clone(true);
+        minimizeChat.find('.text').html(row.data.NameSurname);
+        minimizeChat.removeClass('clone');
+        minimizeChat.addClass('disabled');
+        minimizeChat.attr('data-id', row.id);
+
+        $(".min-message-container").append(minimizeChat);
+
+        var chatScreen = $("#Clones .chat-screen.history-chat.clone").clone(true);
+        chatScreen.find(".rpanel-title .client-name").html(row.data.NameSurname);
+        chatScreen.removeClass('clone');
+        chatScreen.addClass('disabled');
+        chatScreen.attr('data-id', row.id);
+        chatScreen.attr('data-clientid', row.data.id);
+        chatScreen.find('#accordion').attr('id', "accordion" + row.id);
+        chatScreen.find('.default-active').addClass('active');
+        $(".chat-screen-container").append(chatScreen);
+
+        Chat.setClientInfo(row.id, row.data);
         Chat.setHistoryClientInfo(row);
     }
+    this.open(row.id);
+};
+
+Chat.setChatToHistory = function (id) {
+    var chat = $(".chat-screen-container .chat-screen[data-id='" + id + "']");
+    chat.addClass('history-chat');
+    chat.find('.chat-container').removeClass('col-md-4').addClass('col-md-12');
+    chat.find('.prepared-messages-container').remove();
 };
 
 Chat.setHistoryClientInfo = function (visit) {
-    Chat.addClientInfoRow(visit.id, 'Bitiş zamanı', timestampToDate(visit.closed_at));
-    Chat.addClientInfoRow(visit.id, 'Chat Süresi', secondToTime(visit.chattime));
-    if (visit.active === '2') {
-        Chat.addClientInfoRow(visit.id, 'Chati Sonlandıran', 'Kullanıcı');
+    Chat.addClientInfoRow(visit.id, 'Görüşme Başlangıç Tarihi', timestampToDate(visit.created_at));
+    Chat.addClientInfoRow(visit.id, 'Görüşme Bitiş Tarihi', timestampToDate(visit.closed_at));
+    Chat.addClientInfoRow(visit.id, 'Görüşme Süresi', secondToTime(visit.chattime));
+    if (!visit.point) {
+        visit.point = 'N/A'
     } else {
-        Chat.addClientInfoRow(visit.id, 'Chati Sonlandıran', visit.closedusername);
+        visit.point = visit.point + '/5';
     }
+    Chat.addClientInfoRow(visit.id, 'Görüşmedeki Temsilciler', visit.username);
+    Chat.addClientInfoRow(visit.id, 'Görüşme Puanı', visit.point);
+    if (visit.active === '2') {
+        visit.closedusername = 'Ziyaretçi';
+    }
+    Chat.addClientInfoRow(visit.id, 'Görüşmeyi Sonlandıran', visit.closedusername);
 };
 
 Chat.setClientInfo = function (id, data) {
@@ -139,7 +178,9 @@ Chat.showChatScreen = function (id) {
     minMessage.removeClass('has-message');
     chatScreen.addClass('shw-rside');
     Chat.setScrollbar(id);
-    $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.focus();
+    if ($(".chat-screen[data-id='" + id + "'] .text-editor").length > 0) {
+        $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.focus();
+    }
 };
 
 Chat.showLeftChatScreen = function () {
@@ -392,7 +433,7 @@ Chat.resetUnreadMessageCount = function (id) {
 };
 
 Chat.setScrollbar = function (visitid) {
-    if($(".chat-screen[data-id='" + visitid + "']")) {
+    if ($(".chat-screen[data-id='" + visitid + "']")) {
         $(".chat-screen[data-id='" + visitid + "'] .messages")[0].scrollTop = $(".chat-screen[data-id='" + visitid + "'] .messages")[0].scrollHeight;
     }
 };
@@ -494,7 +535,7 @@ Chat.loadRecentVisit = function (visitId, recentVisit) {
     var elem = $(".card.clone").clone(true);
     elem.attr('data-id', visitId + '_' + recentVisit.id);
     var headingVisitId = 'HeadingRecentVisit' + visitId + '_' + recentVisit.id;
-    var collapseVisitId = 'RecentVisit' + visitId + '_' +  recentVisit.id;
+    var collapseVisitId = 'RecentVisit' + visitId + '_' + recentVisit.id;
 
     elem.find('.chat-date').html(timestampToDate(recentVisit.created_at));
     elem.find('.chat-user span').html(recentVisit.username);
@@ -570,13 +611,16 @@ Chat.loadRecentVisitInfos = function (visitId, id, recentVisit) {
     } else {
         this.addRecentVisitInfo(visitId + '_' + id, 'Giriş Türü', 'Normal');
     }
-    this.addRecentVisitInfo(visitId + '_' + id, 'Bitiş zamanı', timestampToDate(recentVisit.closed_at));
-    this.addRecentVisitInfo(visitId + '_' + id, 'Chat Süresi', secondToTime(recentVisit.chattime));
+    var date = new Date(recentVisit.closed_at);
+    this.addRecentVisitInfo(visitId + '_' + id, 'Görüşme Başlangıç Tarihi', timestampToDate(recentVisit.created_at));
+    this.addRecentVisitInfo(visitId + '_' + id, 'Görüşme Bitiş Tarihi', timestampToDate(recentVisit.closed_at));
+    this.addRecentVisitInfo(visitId + '_' + id, 'Görüşmedeki Temsilciler', recentVisit.username);
+    this.addRecentVisitInfo(visitId + '_' + id, 'Görüşme Süresi', secondToTime(recentVisit.chattime));
+
     if (recentVisit.active === '2') {
-        this.addRecentVisitInfo(visitId + '_' + id, 'Chati Sonlandıran', 'Kullanıcı');
-    } else {
-        this.addRecentVisitInfo(visitId + '_' + id, 'Chati Sonlandıran', $(".chat-screen-container .chat-screen .card[data-id='" + recentVisit.id + "'] .chat-user span").html());
+        recentVisit.closedusername = 'Ziyaretçi';
     }
+    this.addRecentVisitInfo(visitId + '_' + id, 'Görüşmeyi Sonlandıran', recentVisit.closedusername);
 };
 
 Chat.addRecentVisitInfo = function (recentVisitId, name, value) {
@@ -645,5 +689,26 @@ Chat.focusTextEditor = function () {
     var id = this.getCurrentChatId();
     if (id) {
         $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.focus();
+    }
+};
+
+Chat.showNextHistoryChat = function (e) {
+    var row = $("#HistoryTable tr.active-table-row");
+    if (row.length > 0 && $(".history-chat.shw-rside").length > 0) {
+        var index = row.index();
+        $(".chat-screen-container .chat-screen.disabled.shw-rside span.close-chat").click();
+        ++index;
+        $("#HistoryTable tr:eq(" + (index + 1) + ") .btn-show-history-chat").click();
+        e.preventDefault();
+    }
+};
+
+Chat.showPrevHistoryChat = function (e) {
+    var row = $("#HistoryTable tr.active-table-row");
+    if (row.length > 0 && $(".history-chat.shw-rside").length > 0) {
+        var index = row.index();
+        $(".chat-screen-container .chat-screen.disabled.shw-rside span.close-chat").click();
+        $("#HistoryTable tr:eq(" + (index) + ") .btn-show-history-chat").click();
+        e.preventDefault();
     }
 };

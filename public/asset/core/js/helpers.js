@@ -51,31 +51,24 @@ function confirmation(title, url, text, type) {
 }
 
 function timestampToDate(timestamp) {
+
     if (timestamp) {
         if (timestamp.includes('T')) {
-            var split = timestamp.split('T');
-        } else {
-            var split = timestamp.split(' ');
+            timestamp = timestamp.replace('T', ' ');
         }
-
-        var date = split[0].split('-');
-        var time = split[1].split('.')[0];
-        time = time.split(':');
-        time = time[0] + ':' + time[1];
-
-        var day = date[2];
-        var year = date[0];
-        var month = date[1];
-        return day + '/' + month + '/' + year + ' ' + time;
-
+        return new moment(timestamp).format('YYYY-MM-DD H:mm');
     }
     else {
         return 'N/A';
     }
 }
 
+function connectionTimeToDate(connectionTime) {
+    return new moment(connectionTime.year + '-' + connectionTime.month + '-' + connectionTime.day + ' ' + connectionTime.hour + ':' + connectionTime.minute).format('YYYY-MM-DD H:mm');
+}
+
 function timestampToIso(timestamp) {
-    if(timestamp) {
+    if (timestamp) {
         return timestamp.split('.')[0].replace('T', ' ');
     } else {
         return 'N/A';
@@ -120,7 +113,7 @@ function secondToShortTime(second) {
         string += minutes + ' dk ';
     }
 
-    if(string === '') {
+    if (string === '') {
         string = 'yaklaşık 1 dk';
     }
 

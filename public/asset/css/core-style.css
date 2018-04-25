@@ -547,3 +547,39 @@ i.facebook-loggedin-client-icon {
     position:relative;
     height:500px;
 }
+table tr.active-table-row td {
+    background-color:#adecf1 !important;
+}
+.history-chat {
+    width:30%;
+}
+.history-chat .client-info-container, .history-chat .chat-history-container {
+    display:none;
+}
+.history-chat .messages {
+    height:100%;
+    top:0px;
+}
+.history-chat .grid.grid2 {
+    padding-top:0px;
+}
+.history-chat .r-panel-body {
+    background-color:#fff;
+    border-left: solid 3px #62c1c8;
+}
+.history-chat .heads .bar-choosing {
+    padding:10px;
+    background-color:#fff;
+    color:#000;
+    text-align:center;
+    margin-bottom:20px;
+    cursor:pointer;
+    border: solid 3px #eeeeef;
+}
+.history-chat .heads .bar-choosing:last-child {
+    border-right: solid 3px #eeeeef;
+}
+.history-chat .heads .bar-choosing.active {
+    background-color:#62c1c8;
+    color:#fff;
+}
