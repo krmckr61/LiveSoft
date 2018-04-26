@@ -56,6 +56,87 @@
         </ul>
         <ul class="nav navbar-top-links navbar-right pull-right">
             <!-- /.dropdown -->
+
+            @if(Auth::user()->can('role') || Auth::user()->can('user') || Auth::user()->can('shift') || Auth::user()->can('preparedContent') || Auth::user()->can('welcomeMessage') || Auth::user()->can('bannedWord') || Auth::user()->can('config') || Auth::user()->can('bannedUser') || Auth::user()->can('subject') || Auth::user()->can('report'))
+
+                <li class="mega-dropdown">
+                    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
+                       aria-expanded="true"><span class="hidden-xs">MENU</span><i class="icon-options-vertical"></i></a>
+                    <ul class="dropdown-menu mega-dropdown-menu animated bounceInDown">
+
+                        @if(Auth::user()->can('role') || Auth::user()->can('user') || Auth::user()->can('shift'))
+                            <li class="col-sm-4">
+                                <ul>
+                                    <li class="dropdown-header"><i class="fa fa-users"></i> Personel Yönetimi</li>
+                                    @if(Auth::user()->can('role'))
+                                        <li><a href="{!! url('/roles') !!}"><i class="fa fa-user-md"></i> Roller</a></li>
+                                    @endif
+                                    @if(Auth::user()->can('user'))
+                                        <li><a href="{!! url('/users') !!}"><i class="fa fa-user"></i> Personeller</a></li>
+                                    @endif
+                                    @if(Auth::user()->can('shift'))
+                                        <li><a href="{!! url('/shifts') !!}"><i class="ti-notepad"></i> Mesailer</a></li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+
+                        @if(Auth::user()->can('preparedContent') || Auth::user()->can('welcomeMessage') || Auth::user()->can('bannedWord'))
+                            <li class="col-sm-4">
+                                <ul>
+                                    <li class="dropdown-header"><i class="fa fa-comments"></i> İçerik Yönetimi</li>
+                                    @if(Auth::user()->can('preparedContent'))
+                                        <li>
+                                            <a href="{!! url('/preparedContents') !!}"><i class="ti-control-shuffle"></i> Hazır
+                                                İçerikler</a>
+                                        </li>
+                                    @endif
+                                    @if(Auth::user()->can('welcomeMessage'))
+                                        <li>
+                                            <a href="{!! url('/welcomeMessages') !!}"><i class="fa fa-send"></i> Karşılama Mesajları</a>
+                                        </li>
+                                    @endif
+                                    @if(Auth::user()->can('bannedWord'))
+                                        <li>
+                                            <a href="{!! url('/bannedWords') !!}"><i class="fa fa-ban"></i> Yasaklı Kelimeler</a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+
+                        @if(Auth::user()->can('config') || Auth::user()->can('bannedUser') || Auth::user()->can('subject') || Auth::user()->can('report'))
+                            <li class="col-sm-4">
+                                <ul>
+                                    <li class="dropdown-header"><i class="fa fa-forward"></i> Diğer İşlemler</li>
+                                    @if(Auth::user()->can('subject'))
+                                        <li>
+                                            <a href="{!! url('/subjects') !!}"><i class="fa fa-list"></i> Görüşme Konuları</a>
+                                        </li>
+                                    @endif
+                                    @if(Auth::user()->can('bannedUser'))
+                                        <li>
+                                            <a href="{!! url('/bannedUsers') !!}"><i class="fa fa-ban"></i> Engellenen Ziyaretçiler</a>
+                                        </li>
+                                    @endif
+                                    @if(Auth::user()->can('config'))
+                                        <li>
+                                            <a href="{!! url('/configs') !!}"><i class="fa fa-cogs"></i> Ayarlar</a>
+                                        </li>
+                                    @endif
+                                    @if(Auth::user()->can('report'))
+                                        <li>
+                                            <a href="{!! url('/reports') !!}"><i class="fa fa-flag-checkered"></i> Raporlar</a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+
+            @endif
+
             @if(Auth::user()->can('liveSupport') && Request::is('/'))
                 <li class="dropdown user-status-menu">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" data-id="0">
@@ -113,7 +194,8 @@
                 <!-- /.dropdown-user -->
             </li>
 
-            <!-- /.dropdown -->
+
+        <!-- /.dropdown -->
         </ul>
     </div>
     <!-- /.navbar-header -->
@@ -133,118 +215,6 @@
                         Canlı Destek
                     </span>
                     </a>
-                </li>
-            @endif
-
-            @if(Auth::user()->can('role') || Auth::user()->can('user') || Auth::user()->can('shift'))
-                <li>
-                    <a href="javascript:;"
-                       class="waves-effect {!! (Request::is('roles*') || Request::is('users*')) ? ' active' : '' !!}">
-                    <span class="hide-menu">
-                        <i class="fa fa-users"></i> Kullanıcı Yönetimi
-                    </span>
-                    </a>
-                    <ul class="nav nav-second-level collapse">
-                        @if(Auth::user()->can('role'))
-                            <li>
-                                <a {!! (Request::is('roles*')) ? ' class="active"' : '' !!} href="{!! url('roles') !!}"><i
-                                            class="fa fa-user-md"></i> Roller</a>
-                            </li>
-                        @endif
-                        @if(Auth::user()->can('user'))
-                            <li><a {!! (Request::is('users*')) ? ' class="active"' : '' !!} href="{!! url('users') !!}"><i
-                                            class="fa fa-user"></i> Kullanıcılar</a>
-                            </li>
-                        @endif
-                        @if(Auth::user()->can('shift'))
-                            <li>
-                                <a {!! (Request::is('shifts*')) ? ' class="active"' : '' !!} href="{!! url('shifts') !!}"><i
-                                            class="ti-notepad"></i> Mesailer</a>
-                            </li>
-                        @endif
-                    </ul>
-                </li>
-            @endif
-            @if(Auth::user()->can('preparedContent') || Auth::user()->can('welcomeMessage') || Auth::user()->can('bannedWord'))
-                <li>
-                    <a href="javascript:;"
-                       class="waves-effect{!! (Request::is('preparedContents*') || Request::is('welcomeMessages*') || Request::is('bannedWords*')) ? ' active' : '' !!}"
-                       href="{!! url('preparedContents') !!}">
-                    <span class="hide-menu">
-                        <i class="fa fa-comments"></i> İçerik Yönetimi
-                    </span>
-                    </a>
-                    <ul class="nav nav-second-level collapse">
-                        @if(Auth::user()->can('preparedContent'))
-                            <li>
-                                <a {!! (Request::is('preparedContents*')) ? ' class="active"' : '' !!} href="{!! url('preparedContents') !!}">
-                                    <i class="ti-control-shuffle"></i> Hazır İçerikler
-                                </a>
-                            </li>
-                        @endif
-                        @if(Auth::user()->can('welcomeMessage'))
-                            <li>
-                                <a {!! (Request::is('welcomeMessages*')) ? ' class="active"' : '' !!} href="{!! url('welcomeMessages') !!}">
-                                    <i class="fa fa-send"></i> Karşılama Mesajları
-                                </a>
-                            </li>
-                        @endif
-                        @if(Auth::user()->can('bannedWord'))
-                            <li>
-                                <a {!! (Request::is('bannedWords*')) ? ' class="active"' : '' !!} href="{!! url('bannedWords') !!}">
-                                    <i class="fa fa-ban"></i> Yasaklı Kelimeler
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
-                </li>
-            @endif
-            @if(Auth::user()->can('report'))
-                <li>
-                    <a href="{!! url('reports') !!}"
-                       class="waves-effect{!! ((Request::is('reports*')) ? ' active' : '') !!}">
-                        <i class="fa fa-flag-checkered"></i>
-                        Raporlar
-                    </a>
-                </li>
-            @endif
-
-            @if(Auth::user()->can('config') || Auth::user()->can('bannedUser') || Auth::user()->can('subject'))
-                <li>
-                    <a href="javascript:;"
-                       class="wawes-effect{!! ((Request::is('configs*') || Request::is('bannedUsers*') || Request::is('subjects*')) ? ' active' : '') !!}">
-                        <i class="fa fa-forward"></i>
-                        Diğer İşlemler
-                    </a>
-                    <ul class="nav nav-second-level collapse">
-                        @if(Auth::user()->can('subject'))
-                            <li>
-                                <a href="{!! url('subjects') !!}"
-                                   class="waves-effect{!! ((Request::is('subjects*')) ? ' active' : '') !!}">
-                                    <i class="fa fa-list"></i>
-                                    Görüşme Konuları
-                                </a>
-                            </li>
-                        @endif
-                        @if(Auth::user()->can('bannedUser'))
-                            <li>
-                                <a href="{!! url('bannedUsers') !!}"
-                                   class="waves-effect{!! ((Request::is('bannedUsers*')) ? ' active' : '') !!}">
-                                    <i class="fa fa-ban"></i>
-                                    Engellenen Ziyaretçiler
-                                </a>
-                            </li>
-                        @endif
-                        @if(Auth::user()->can('config'))
-                            <li>
-                                <a href="{!! url('configs') !!}"
-                                   class="waves-effect{!! ((Request::is('configs*')) ? ' active' : '') !!}">
-                                    <i class="fa fa-cogs"></i>
-                                    Ayarlar
-                                </a>
-                            </li>
-                        @endif
-                    </ul>
                 </li>
             @endif
 

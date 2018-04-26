@@ -209,6 +209,16 @@ $(document).ready(function () {
         container.find(target).show();
     });
 
+    $(".mega-dropdown li a").on('click', function (e) {
+        if (Chat.hasActiveChat()) {
+            e.preventDefault();
+            var href = $(this).attr('href');
+            confirmation('Uyarı!', href, 'Mevcut görüşmelerinizi sonlandırmadan bu bağlantıya gitmek istediğinize emin misiniz ?', 'warning');
+        } else {
+            return true;
+        }
+    });
+
     setInterval(function () {
         $(".time-countup").each(function (index) {
             var elem = $(".time-countup").eq(index);

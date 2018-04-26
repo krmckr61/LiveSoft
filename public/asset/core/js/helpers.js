@@ -34,7 +34,7 @@ function confirmation(title, url, text, type) {
     if (!text) {
         text = null;
     }
-    swal({
+        swal({
             title: title,
             text: text,
             type: type,
@@ -132,7 +132,7 @@ function getBrowser(browserName) {
 }
 
 function getOs(os) {
-    var oss = ['windows', 'android', 'mac', 'linux'];
+    var oss = ['windows', 'android', 'mac', 'linux', 'ios'];
     for (var i = 0; i < oss.length; i++) {
         if (os.toLowerCase().includes(oss[i])) {
             return oss[i];
@@ -140,4 +140,12 @@ function getOs(os) {
     }
 
     return false;
+}
+
+function strLimit(str, limit = 10, suffix = '...') {
+    if (str.length > limit) {
+        return str.substring(0, limit).trim() + suffix;
+    } else {
+        return str;
+    }
 }

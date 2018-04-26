@@ -717,3 +717,12 @@ Chat.showPrevHistoryChat = function (e) {
         e.preventDefault();
     }
 };
+
+Chat.hasActiveChat = function () {
+    var elem = $(".chat-screen-container .chat-screen");
+    if(elem.length > 0 && !elem.hasClass('.history-chat') && !elem.hasClass('disabled')) {
+        return true;
+    } else {
+        return false;
+    }
+};
