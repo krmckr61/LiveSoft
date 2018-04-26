@@ -143,6 +143,10 @@
     right: 3px;
 }
 
+.message-container .text {
+    word-wrap: break-word;
+}
+
 .min-message-container {
     display: flex;
     height: 42px;
