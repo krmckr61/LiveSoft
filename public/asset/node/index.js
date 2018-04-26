@@ -24,6 +24,8 @@ Node.prototype.initSockets = function () {
     this.socket.on('loadClients', function (data) {
         if (Object.keys(data).length > 0) {
             $.each(data, function (index, value) {
+                table.clearClientTable();
+                table.clearLoginClientTable();
                 table.addClient(value);
             });
         }

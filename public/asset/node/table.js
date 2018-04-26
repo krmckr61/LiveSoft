@@ -46,6 +46,16 @@ table.initResponsive = function () {
     $(".content-wrap").height($(window).height() - $(".navbar-default").height() - $("footer").height() - 190);
 };
 
+table.clearClientTable = function () {
+    this.clientTable.clear().draw(false);
+    this.updateClientCounts();
+};
+
+table.clearLoginClientTable = function () {
+    this.loginClientTable.clear().draw(false);
+    this.updateClientCounts();
+};
+
 table.addClient = function (client) {
     if (client.status !== 0) {
         return this.addConnectClient(client);

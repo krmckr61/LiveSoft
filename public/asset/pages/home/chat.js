@@ -562,8 +562,6 @@ Chat.loadRecentVisitMessages = function (data) {
 };
 
 Chat.loadRecentVisitMessage = function (visitId, message) {
-    var username = $(".chat-screen-container .chat-screen .card[data-id='" + message.visitid + "'] .chat-user span").html();
-
     var elem = $("#Clones .message-container.clone").clone(true);
     elem.removeClass('clone');
     elem.find('.text').html(message.text);
@@ -571,6 +569,7 @@ Chat.loadRecentVisitMessage = function (visitId, message) {
     elem.attr('data-id', message.id);
     if (message.sender === "2") {
         elem.addClass('me');
+        var username = message.username;
         if (!username) {
             elem.find('.sender-name').html('N/A');
         } else {
@@ -579,7 +578,8 @@ Chat.loadRecentVisitMessage = function (visitId, message) {
     } else if (message.sender === "0") {
         elem.addClass('system');
     } else {
-        elem.find('.sender-name').html($(".chat-screen .card[data-id='" + message.visitid + "']").closest('.chat-screen').find('.client-name').html());
+        var username = $("#RecentVisit" + visitId + "_" + message.visitid + "  .recent-infos .client-detail-row:first-child .value").html();
+        elem.find('.sender-name').html(username);
     }
     $(".chat-screen-container .chat-screen .card[data-id='" + visitId + '_' + message.visitid + "'] .recent-messages").append(elem);
 };
@@ -614,9 +614,14 @@ Chat.loadRecentVisitInfos = function (visitId, id, recentVisit) {
     var date = new Date(recentVisit.closed_at);
     this.addRecentVisitInfo(visitId + '_' + id, 'Görüşme Başlangıç Tarihi', timestampToDate(recentVisit.created_at));
     this.addRecentVisitInfo(visitId + '_' + id, 'Görüşme Bitiş Tarihi', timestampToDate(recentVisit.closed_at));
-    this.addRecentVisitInfo(visitId + '_' + id, 'Görüşmedeki Temsilciler', recentVisit.username);
     this.addRecentVisitInfo(visitId + '_' + id, 'Görüşme Süresi', secondToTime(recentVisit.chattime));
-
+    this.addRecentVisitInfo(visitId + '_' + id, 'Görüşmedeki Temsilciler', recentVisit.username);
+    if(!recentVisit.point) {
+        recentVisit.point = 'N/A';
+    } else {
+        recentVisit.point += '/5';
+    }
+    this.addRecentVisitInfo(visitId + '_' + id, 'Görüşme Puanı', recentVisit.point);
     if (recentVisit.active === '2') {
         recentVisit.closedusername = 'Ziyaretçi';
     }
