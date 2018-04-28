@@ -117,7 +117,6 @@ table.addHistoryRow = function (row) {
 };
 
 table.addUserRow = function (user) {
-    console.log(user.created_at);
     this.userTable.row("#" + user.id).remove().draw();
     var tableData = [];
     if (user.onlinestatus == '1') {
