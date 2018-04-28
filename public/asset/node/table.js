@@ -163,9 +163,9 @@ table.addConnectClient = function (client) {
     tableData.push(client.data.connectionTime.hour + ':' + client.data.connectionTime.minute);
     if (client.status === 2) {
         var userString = '';
-        for(var i = 0; i < client.users.length; i++) {
+        for (var i = 0; i < client.users.length; i++) {
             var user = client.users[i];
-            if(i !== 0) {
+            if (i !== 0) {
                 userString += ', ';
             }
             userString += user.name;
@@ -297,12 +297,7 @@ table.setShortcuts = function () {
         e.preventDefault();
         var id = Chat.getCurrentChatId();
         if (id) {
-            if ($(".min-message-container .min-message[data-id='" + id + "']").hasClass('disabled')) {
-                Chat.closeChat(id);
-            } else {
-                Chat.closeChat(id);
-                destroyChat(id);
-            }
+            Chat.closeChat(id);
         }
         return false;
     });
