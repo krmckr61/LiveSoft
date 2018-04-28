@@ -117,6 +117,7 @@ table.addHistoryRow = function (row) {
 };
 
 table.addUserRow = function (user) {
+    console.log(user.created_at);
     this.userTable.row("#" + user.id).remove().draw();
     var tableData = [];
     if (user.onlinestatus == '1') {
@@ -144,8 +145,12 @@ table.setOnlineSatus = function (data) {
     } else {
         elem.addClass('fa-minus-circle s3');
     }
-    elem.parent().next().find('.time-countup').attr('data-date', new moment().format('YYYY-MM-DDTHH:mm:ss'));
-    elem.attr('data-date', new moment().format('YYYY-MM-DDTHH:mm:ss'));
+
+    Chat.setCurrentTime(data.created_at);
+
+    elem.parent().next().find('.time-countup').attr('data-date', new moment(data.created_at).format('YYYY-MM-DDTHH:mm:ss'));
+    elem.attr('data-date', new moment(data.created_at).format('YYYY-MM-DDTHH:mm:ss'));
+
 };
 
 table.addConnectClient = function (client) {
