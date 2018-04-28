@@ -20,8 +20,7 @@ $(document).ready(function () {
     });
 
     $("#UserTable").on('mouseenter', '.user-table-icon', function () {
-        var time = secondToTime(parseInt(new moment().diff(new moment(timestampToIso($(this).attr('data-date')))) / 1000));
-        $(this).attr('title', time);
+        node.getCurrentTime();
     });
 
     $(".min-message-direction").on('mouseup', function () {
@@ -220,14 +219,8 @@ $(document).ready(function () {
     });
 
     setInterval(function () {
-        $(".time-countup").each(function (index) {
-            var elem = $(".time-countup").eq(index);
-            var value = elem.attr('data-date');
-            var date = new Date().getTime() - new Date(value).getTime();
-            var string = secondToShortTime(Math.round(date / 1000));
-            elem.html(string);
-        });
-    }, 1000);
+        node.getCurrentTime();
+    }, 60000);
 
 });
 

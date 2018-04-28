@@ -131,6 +131,7 @@ table.addUserRow = function (user) {
     tableData.push(user.name);
     this.userTable.row.add(tableData).node().id = user.id;
     this.userTable.draw(false);
+    node.getCurrentTime();
 };
 
 table.setOnlineSatus = function (data) {
@@ -355,6 +356,7 @@ table.setUsers = function (users) {
             table.addUserRow(user);
         }
     }
+    node.getCurrentTime();
 };
 
 table.clearUserTable = function () {

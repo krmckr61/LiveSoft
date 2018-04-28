@@ -573,6 +573,9 @@ Chat.loadRecentVisitMessage = function (visitId, message) {
         if (!username) {
             elem.find('.sender-name').html('N/A');
         } else {
+            if (message.username !== this.user.name) {
+                elem.addClass('other-user');
+            }
             elem.find('.sender-name').html(username);
         }
     } else if (message.sender === "0") {
@@ -725,4 +728,17 @@ Chat.hasActiveChat = function () {
     } else {
         return false;
     }
+};
+
+Chat.setCurrentTime = function (date) {
+    $(".time-countup").each(function (index) {
+        var elem = $(".time-countup").eq(index);
+        var elem2 = elem.parent().prev().find('i');
+        var value = elem.attr('data-date');
+        var newDate = new Date(date).getTime() - new Date(value).getTime();
+        var string = secondToShortTime(Math.round(newDate / 1000));
+        var longDate = secondToTime(Math.round(newDate) / 1000);
+        elem.html(string);
+        elem2.attr('title', longDate);
+    });
 };

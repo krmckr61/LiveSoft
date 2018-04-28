@@ -183,6 +183,10 @@ Node.prototype.initSockets = function () {
         window.location.replace(getDomain() + 'anotherLogin');
     });
 
+    this.socket.on('setCurrentTime', function (date) {
+        Chat.setCurrentTime(date);
+    });
+
 };
 
 Node.prototype.takeClient = function (id) {
@@ -235,4 +239,8 @@ Node.prototype.sendPrivateMessage = function (clientId, message) {
 
 Node.prototype.joinVisit = function (clientId) {
     this.socket.emit('joinVisit', clientId);
+};
+
+Node.prototype.getCurrentTime = function () {
+    this.socket.emit('getCurrentTime');
 };
