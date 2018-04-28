@@ -61,7 +61,7 @@ table.addClient = function (client) {
         return this.addConnectClient(client);
     } else {
         var tableData = [];
-        if(client.data.banned) {
+        if (client.data.banned) {
             tableData.push('<i class="fa fa-ban" title="Engellemiş kullanıcı"></i>');
         } else {
             tableData.push('<i class="fa fa-user"></i>');
