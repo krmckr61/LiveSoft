@@ -20,7 +20,6 @@
     <!-- Custom CSS -->
     <link href="{!! url('asset/css/style.css') !!}" rel="stylesheet">
     <!-- color CSS you can use different color css from css/colors folder -->
-    <link href="{!! url('asset/css/colors/megna.css') !!}" id="theme" rel="stylesheet">
     <link href="{!! url('asset/plugins/bower_components/sweetalert/sweetalert.css') !!}" rel="stylesheet"
           type="text/css">
     <link href="{!! url('asset/plugins/bower_components/toast-master/css/jquery.toast.css') !!}" rel="stylesheet">
@@ -28,7 +27,10 @@
     <link href="{!! url('/asset/plugins/bower_components/icheck/skins/all.css') !!}" rel="stylesheet">
     <link href="{!! url('/asset/plugins/bower_components/custom-select/custom-select.css') !!}" rel="stylesheet"
           type="text/css"/>
+
     <link href="{!! url('/asset/css/core-style.css') !!}" rel="stylesheet" type="text/css"/>
+
+    <link href="" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -194,6 +196,8 @@
                 <!-- /.dropdown-user -->
             </li>
 
+            <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-settings"></i></a></li>
+
 
         <!-- /.dropdown -->
         </ul>
@@ -265,6 +269,32 @@
 </div>
 @yield('footer')
 
+
+<!-- .right-sidebar -->
+<div class="right-sidebar">
+    <div class="slimscrollright">
+        <div class="rpanel-title"> Renk Seçenekleri <span><i class="ti-close right-side-toggle"></i></span> </div>
+        <div class="r-panel-body">
+            <ul id="themecolors">
+                <li><a href="javascript:void(0)" theme="default" class="default-theme">1</a></li>
+                <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
+                <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
+                <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
+                <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
+                <li><a href="javascript:void(0)" theme="megna" class="megna-theme working">6</a></li>
+                <br/>
+                <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
+                <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
+                <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
+                <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
+                <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
+                <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /.right-sidebar -->
+
 <!-- jQuery -->
 <script src="{!! url('asset/plugins/bower_components/jquery/dist/jquery.min.js') !!}"></script>
 <!-- Bootstrap Core JavaScript -->
@@ -291,6 +321,9 @@
 <script src="{!! url('asset/plugins/bower_components/icheck/icheck.min.js') !!}"></script>
 <script src="{!! url('asset/plugins/bower_components/icheck/icheck.init.js') !!}"></script>
 <!-- Core Js -->
+
+<script src="{!! url('asset/plugins/bower_components/styleswitcher/jQuery.style.switcher.js') !!}"></script>
+
 <script src="{!! url('asset/core/js/helpers.js') !!}"></script>
 <script src="{!! url('asset/core/js/core.js') !!}"></script>
 

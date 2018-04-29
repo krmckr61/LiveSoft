@@ -734,10 +734,12 @@ Chat.setCurrentTime = function (date) {
     $(".time-countup").each(function (index) {
         var elem = $(".time-countup").eq(index);
         var elem2 = elem.parent().prev().find('i');
-        var value = elem.attr('data-date');
-        var newDate = new Date(date).getTime() - new Date(value).getTime();
+
+        var newDate = new Date(date).getTime() - new Date(elem.attr('data-date')).getTime();
+
         var string = secondToShortTime(Math.round(newDate / 1000));
         var longDate = secondToTime(Math.round(newDate) / 1000);
+
         elem.html(string);
         elem2.attr('title', longDate);
     });

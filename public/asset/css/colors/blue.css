@@ -156,3 +156,32 @@ body {
   background: #03a9f3;
   color: #ffffff;
 }
+
+
+.sttabs nav li.tab-current a {
+  background-color:#03a9f3;
+}
+.heads .bar.active h3 {
+  background-color:#03a9f3;
+}
+.history-chat .r-panel-body {
+  border-color:#03a9f3 !important;
+}
+.history-chat .heads .bar-choosing.active {
+  background-color:#03a9f3 !important;
+}
+.chat-screen .rpanel-title span {
+  background-color: #4887c1 !important;
+}
+.row.recent-message-buttons .col-sm-6.active {
+  background-color: #03a9f3 !important;
+}
+.table tr.active-table-row td {
+  background-color:#afe6ff !important;
+}
+.fc th.fc-widget-header {
+  background-color:#03a9f3 !important;
+}
+.fc-day:hover, .fc-today:hover {
+  background-color:#afe6ff !important
+}

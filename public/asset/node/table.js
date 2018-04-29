@@ -145,11 +145,10 @@ table.setOnlineSatus = function (data) {
         elem.addClass('fa-minus-circle s3');
     }
 
-    Chat.setCurrentTime(data.created_at);
-
     elem.parent().next().find('.time-countup').attr('data-date', new moment(data.created_at).format('YYYY-MM-DDTHH:mm:ss'));
     elem.attr('data-date', new moment(data.created_at).format('YYYY-MM-DDTHH:mm:ss'));
 
+    Chat.setCurrentTime(data.created_at);
 };
 
 table.addConnectClient = function (client) {

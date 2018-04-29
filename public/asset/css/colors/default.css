@@ -52,7 +52,7 @@ body {
   color: #ffffff;
 }
 .navbar-header {
-  background: #4F5467;
+  background: #ec9478;
 }
 .navbar-top-links > li > a {
   color: #ffffff;
@@ -155,4 +155,36 @@ body {
 .nav-pills > li.active > a:hover {
   background: #fb9678;
   color: #ffffff;
+}
+
+
+
+
+
+.sttabs nav li.tab-current a {
+  background-color:#fb9678;
+}
+.heads .bar.active h3 {
+  background-color:#fb9678;
+}
+.history-chat .r-panel-body {
+  border-color:#fb9678 !important;
+}
+.history-chat .heads .bar-choosing.active {
+  background-color:#fb9678 !important;
+}
+.chat-screen .rpanel-title span {
+  background-color: #bf7a64 !important;
+}
+.row.recent-message-buttons .col-sm-6.active {
+  background-color: #ec9478 !important;
+}
+.table tr.active-table-row td {
+  background-color:#ffd9cc !important;
+}
+.fc th.fc-widget-header {
+  background-color:#fb9678 !important;
+}
+.fc-day:hover, .fc-today:hover {
+  background-color:#fbe1d9 !important
 }

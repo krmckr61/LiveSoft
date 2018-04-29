@@ -555,7 +555,7 @@ table tr.active-table-row td {
     background-color:#adecf1 !important;
 }
 .history-chat {
-    width:30%;
+    width:30% !important;
 }
 .history-chat .client-info-container, .history-chat .chat-history-container {
     display:none;
@@ -586,4 +586,13 @@ table tr.active-table-row td {
 .history-chat .heads .bar-choosing.active {
     background-color:#62c1c8;
     color:#fff;
+}
+.right-sidebar.shw-rside {
+    width: inherit;
+}
+.right-sidebar .rpanel-title {
+    font-size:14px;
+}
+.right-sidebar .rpanel-title i {
+    font-size:16px;
 }
