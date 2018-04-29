@@ -171,6 +171,7 @@ body {
 
 
 
+
 .sttabs nav li.tab-current a {
     background-color:#a0aec4;
 }
@@ -197,4 +198,22 @@ body {
 }
 .fc-day:hover, .fc-today:hover {
     background-color:#d4e1f5 !important
+}
+.min-message-container .min-message.active {
+    background-color: #4f5367 !important;
+}
+.min-message-container .min-message.disabled {
+    background-color: #555 !important;
+}
+.min-message-container .min-message.disabled.active {
+    background-color: #000 !important;
+}
+.min-message-container .min-message {
+    background-color: #a0aec4 !important;
+}
+.unread-message-count {
+    background-color: #4f5367 !important;
+}
+.message-container {
+    background-color:#a0aec4;
 }

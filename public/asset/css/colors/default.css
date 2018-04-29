@@ -188,3 +188,21 @@ body {
 .fc-day:hover, .fc-today:hover {
   background-color:#fbe1d9 !important
 }
+.min-message-container .min-message.active {
+  background-color: #fb9678 !important;
+}
+.min-message-container .min-message.disabled {
+  background-color: #555 !important;
+}
+.min-message-container .min-message.disabled.active {
+  background-color: #000 !important;
+}
+.min-message-container .min-message {
+  background-color: #ffc0ab !important;
+}
+.unread-message-count {
+  background-color: #fb9678 !important;
+}
+.message-container {
+  background-color:#fb9678;
+}
