@@ -599,3 +599,7 @@ table tr.active-table-row td {
 .current-chat {
     width:100% !important;
 }
+.right-sidebar.color-schema i.right-side-toggle {
+    margin-top:2px;
+    display:block;
+}
