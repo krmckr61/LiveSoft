@@ -161,7 +161,7 @@ $(document).ready(function () {
         $("#PrivateMessageModal").modal('show');
     });
 
-    $("#LoginVisitorTable").on('click', '.watch-chat', function () {
+    $("#LoginVisitorTable").on('click', '.watch-chat-button', function () {
         var id = $(this).attr('data-id');
         if(id) {
             $("#LoginVisitorTable tr#" + id).addClass('active-table-row');
@@ -209,7 +209,11 @@ $(document).ready(function () {
     });
 
     $(document).on('keydown', null, 'up', function (e) {
-        Chat.showPrevHistoryChat(e);
+        if($(".chat-screen-container .chat-screen.shw-rside").hasClass('history-chat')) {
+            Chat.showPrevHistoryChat(e);
+        } else if($(".chat-screen-container .chat-screen.shw-rside").hasClass('watch-chat')) {
+            Chat.showPrevWatchChat(e);
+        }
     });
 
     $(".heads .bar-choosing").on('click', function () {

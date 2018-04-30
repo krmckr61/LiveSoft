@@ -177,10 +177,10 @@ body {
 .heads .bar.active h3 {
     background-color:#fb9678;
 }
-.history-chat .r-panel-body {
+.history-chat .r-panel-body, .watch-chat .r-panel-body {
     border-color:#fb9678 !important;
 }
-.history-chat .heads .bar-choosing.active {
+.history-chat .heads .bar-choosing.active, .watch-chat .heads .bar-choosing.active {
     background-color:#fb9678 !important;
 }
 .chat-screen .rpanel-title span {

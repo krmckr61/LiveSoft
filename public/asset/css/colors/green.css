@@ -164,10 +164,10 @@ body {
 .heads .bar.active h3 {
     background-color:#00c292;
 }
-.history-chat .r-panel-body {
+.history-chat .r-panel-body, .watch-chat .r-panel-body {
     border-color:#00c292 !important;
 }
-.history-chat .heads .bar-choosing.active {
+.history-chat .heads .bar-choosing.active, .watch-chat .heads .bar-choosing.active {
     background-color:#00c292 !important;
 }
 .chat-screen .rpanel-title span {

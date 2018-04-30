@@ -479,16 +479,18 @@ Chat.clearText = function (id) {
 };
 
 Chat.disableChat = function (id) {
-    this.clearText(id);
     $(".chat-screen[data-id='" + id + "']").addClass('disabled');
-    $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.composer.disable();
-    $(".chat-screen[data-id='" + id + "'] .message-send").attr('disabled', 'disabled');
     $(".min-message-container .min-message[data-id='" + id + "']").addClass('disabled');
+    if (!$(".chat-screen-container .chat-screen[data-id='" + id + "']").hasClass('watch-chat')) {
+        this.clearText(id);
+        $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.composer.disable();
+        $(".chat-screen[data-id='" + id + "'] .message-send").attr('disabled', 'disabled');
+    }
 };
 
 Chat.closeChat = function (id) {
     if ($(".chat-screen[data-id='" + id + "']").hasClass('disabled')) {
-        if($(".chat-screen[data-id='" + id + "']").hasClass('watch-chat')) {
+        if ($(".chat-screen[data-id='" + id + "']").hasClass('watch-chat')) {
             node.logoutRoom(id);
         }
         $(".chat-screen[data-id='" + id + "'], .min-message[data-id='" + id + "']").remove();
@@ -647,7 +649,7 @@ Chat.loadRecentVisitInfos = function (visitId, id, recentVisit) {
     this.addRecentVisitInfo(visitId + '_' + id, 'Görüşme Bitiş Tarihi', timestampToDate(recentVisit.closed_at));
     this.addRecentVisitInfo(visitId + '_' + id, 'Görüşme Süresi', secondToTime(recentVisit.chattime));
     this.addRecentVisitInfo(visitId + '_' + id, 'Görüşmedeki Temsilciler', recentVisit.username);
-    if(!recentVisit.point) {
+    if (!recentVisit.point) {
         recentVisit.point = 'N/A';
     } else {
         recentVisit.point += '/5';
@@ -740,15 +742,22 @@ Chat.showNextHistoryChat = function (e) {
 };
 
 Chat.showNextWatchChat = function (e) {
-    var row = $("#HistoryTable tr.active-table-row");
-    if (row.length > 0 && $(".watch.shw-rside").length > 0) {
+    var row = $("#LoginVisitorTable tr.active-table-row");
+    if (row.length > 0 && $(".watch-chat.shw-rside").length > 0) {
         var index = row.index();
         $(".chat-screen-container .chat-screen.disabled.shw-rside span.close-chat").click();
         ++index;
-        var visitorId = $("#LoginVisitorTable tr:eq(" + (index + 1) + ")").attr('id');
-        console.log(visitorId);
-        // node.watchChat(visitorId);
-        e.preventDefault();
+        var elem = $("#LoginVisitorTable tr[role='row']:eq(" + (index + 1) + ")");
+        if (elem) {
+            row.find('.open-client-detail').click();
+            $("#LoginVisitorTable tr").removeClass('active-table-row');
+            var id = elem.attr('id');
+            elem.find('.open-client-detail').click();
+            setTimeout(function () {
+                elem.next().find('.watch-chat-button').click();
+            }, 50);
+            e.preventDefault();
+        }
     }
 };
 
@@ -762,9 +771,28 @@ Chat.showPrevHistoryChat = function (e) {
     }
 };
 
+Chat.showPrevWatchChat = function (e) {
+    var row = $("#LoginVisitorTable tr.active-table-row");
+    if (row.length > 0 && $(".watch-chat.shw-rside").length > 0) {
+        var index = row.index();
+        $(".chat-screen-container .chat-screen.disabled.shw-rside span.close-chat").click();
+        var elem = $("#LoginVisitorTable tr[role='row']:eq(" + (index) + ")");
+        if (elem) {
+            row.find('.open-client-detail').click();
+            $("#LoginVisitorTable tr").removeClass('active-table-row');
+            var id = elem.attr('id');
+            elem.find('.open-client-detail').click();
+            setTimeout(function () {
+                elem.next().find('.watch-chat-button').click();
+            }, 50);
+            e.preventDefault();
+        }
+    }
+};
+
 Chat.hasActiveChat = function () {
     var elem = $(".chat-screen-container .chat-screen");
-    if(elem.length > 0 && !elem.hasClass('.history-chat') && !elem.hasClass('disabled')) {
+    if (elem.length > 0 && !elem.hasClass('.history-chat') && !elem.hasClass('disabled')) {
         return true;
     } else {
         return false;

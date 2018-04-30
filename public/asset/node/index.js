@@ -23,9 +23,9 @@ Node.prototype.initSockets = function () {
 
     this.socket.on('loadClients', function (data) {
         if (Object.keys(data).length > 0) {
+            table.clearClientTable();
+            table.clearLoginClientTable();
             $.each(data, function (index, value) {
-                table.clearClientTable();
-                table.clearLoginClientTable();
                 table.addClient(value);
             });
         }
@@ -67,6 +67,7 @@ Node.prototype.initSockets = function () {
     });
 
     this.socket.on('getMessage', function (data) {
+        console.log(data);
         Chat.loadMessage(data);
         if ($(".min-message-container .min-message[data-id='" + data.visitid + "']").hasClass("active") && data.sender != "2") {
             self.readMessages(data.visitid);

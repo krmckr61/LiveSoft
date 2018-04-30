@@ -295,7 +295,7 @@
                 @if(Auth::user()->can('watchChat'))
                     <div class="col-sm-3 text-right ban-row">Görüşmeyi İzle :</div>
                     <div class="col-sm-9 text-left ban-row">
-                        <button type="button" class="btn btn-xs btn-default watch-chat" title="Görüşmeyi İzle">
+                        <button type="button" class="btn btn-xs btn-default watch-chat-button" title="Görüşmeyi İzle">
                             <i class="fa fa-eye"></i> Görüşmeyi İzle
                         </button>
                     </div>
