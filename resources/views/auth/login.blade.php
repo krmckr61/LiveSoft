@@ -77,8 +77,6 @@
 <script src="{!! url('asset/js/waves.js') !!}"></script>
 <!-- Custom Theme JavaScript -->
 <script src="{!! url('asset/js/custom.min.js') !!}"></script>
-<!--Style Switcher -->
-<script src="{!! url('asset/plugins/bower_components/styleswitcher/jQuery.style.switcher.js') !!}"></script>
 </body>
 </html>
 

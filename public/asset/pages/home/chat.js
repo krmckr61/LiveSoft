@@ -29,7 +29,7 @@ Chat.onResizeChatScreen = function (id) {
     var screen = $(".chat-screen[data-id='" + id + "']");
     screen.height($(window).height() - ($("footer").height() + 30));
     screen.find(".r-panel-body").height(screen.height() - 70);
-    if (screen.hasClass('history-chat')) {
+    if (screen.hasClass('history-chat') || screen.hasClass('watch-chat')) {
         screen.find(".grid").height(screen.find(".r-panel-body").height() - 77);
         screen.find(".grid.grid2").height(screen.find(".r-panel-body").height() - 107);
     } else {
@@ -42,7 +42,6 @@ Chat.onResizeChatScreen = function (id) {
 };
 
 Chat.open = function (id) {
-
     $(".min-message-container .min-message[data-id='" + id + "']").trigger('click');
 };
 
@@ -94,6 +93,32 @@ Chat.addHistoryChat = function (row) {
 
         Chat.setClientInfo(row.id, row.data);
         Chat.setHistoryClientInfo(row);
+    }
+    this.open(row.id);
+};
+
+Chat.addWatchChat = function (row) {
+    if ($(".chat-screen-container .chat-screen[data-id=" + row.id + "]").length < 1) {
+        var minimizeChat = $("#Clones .min-message.clone").clone(true);
+        minimizeChat.find('.text').html(row.data.NameSurname);
+        minimizeChat.removeClass('clone');
+        minimizeChat.addClass('disabled');
+        minimizeChat.attr('data-id', row.id);
+
+        $(".min-message-container").append(minimizeChat);
+
+        var chatScreen = $("#Clones .chat-screen.watch-chat.clone").clone(true);
+        chatScreen.find(".rpanel-title .client-name").html(row.data.NameSurname);
+        chatScreen.removeClass('clone');
+        chatScreen.addClass('disabled');
+        chatScreen.attr('data-id', row.id);
+        chatScreen.attr('data-clientid', row.data.id);
+        chatScreen.find('#accordion').attr('id', "accordion" + row.id);
+        chatScreen.find('.default-active').addClass('active');
+
+        $(".chat-screen-container").append(chatScreen);
+
+        Chat.setClientInfo(row.id, row.data);
     }
     this.open(row.id);
 };
@@ -463,6 +488,9 @@ Chat.disableChat = function (id) {
 
 Chat.closeChat = function (id) {
     if ($(".chat-screen[data-id='" + id + "']").hasClass('disabled')) {
+        if($(".chat-screen[data-id='" + id + "']").hasClass('watch-chat')) {
+            node.logoutRoom(id);
+        }
         $(".chat-screen[data-id='" + id + "'], .min-message[data-id='" + id + "']").remove();
         return true;
     } else {
@@ -707,6 +735,19 @@ Chat.showNextHistoryChat = function (e) {
         $(".chat-screen-container .chat-screen.disabled.shw-rside span.close-chat").click();
         ++index;
         $("#HistoryTable tr:eq(" + (index + 1) + ") .btn-show-history-chat").click();
+        e.preventDefault();
+    }
+};
+
+Chat.showNextWatchChat = function (e) {
+    var row = $("#HistoryTable tr.active-table-row");
+    if (row.length > 0 && $(".watch.shw-rside").length > 0) {
+        var index = row.index();
+        $(".chat-screen-container .chat-screen.disabled.shw-rside span.close-chat").click();
+        ++index;
+        var visitorId = $("#LoginVisitorTable tr:eq(" + (index + 1) + ")").attr('id');
+        console.log(visitorId);
+        // node.watchChat(visitorId);
         e.preventDefault();
     }
 };

@@ -265,6 +265,7 @@ table.getChildData = function (id, data) {
     clone.find('button.user-ban').attr('data-id', id);
     clone.find('button.join-chat').attr('data-id', id);
     clone.find('button.private-message').attr('data-id', id);
+    clone.find('button.watch-chat').attr('data-id', id);
 
     return clone;
 };

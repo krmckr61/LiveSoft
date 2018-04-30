@@ -292,11 +292,19 @@
                 <div class="col-sm-9 text-left connectionTime"></div>
                 <div class="col-sm-3 text-right">Giriş Türü :</div>
                 <div class="col-sm-9 text-left loginType"></div>
+                @if(Auth::user()->can('watchChat'))
+                    <div class="col-sm-3 text-right ban-row">Görüşmeyi İzle :</div>
+                    <div class="col-sm-9 text-left ban-row">
+                        <button type="button" class="btn btn-xs btn-default watch-chat" title="Görüşmeyi İzle">
+                            <i class="fa fa-eye"></i> Görüşmeyi İzle
+                        </button>
+                    </div>
+                @endif
                 @if(Auth::user()->can('joinChat'))
                     <div class="col-sm-3 text-right ban-row">Görüşmeye Katıl :</div>
                     <div class="col-sm-9 text-left ban-row">
-                        <button type="button" class="btn btn-xs btn-info join-chat" title="Görüşmeye Katıl"><i
-                                    class="fa fa-user-plus"></i> Görüşmeye Katıl
+                        <button type="button" class="btn btn-xs btn-info join-chat" title="Görüşmeye Katıl">
+                            <i class="fa fa-user-plus"></i> Görüşmeye Katıl
                         </button>
                     </div>
                 @endif
@@ -304,8 +312,7 @@
                     <div class="col-sm-3 text-right ban-row">Özel Mesaj Gönder :</div>
                     <div class="col-sm-9 text-left ban-row">
                         <button type="button" class="btn btn-xs btn-success private-message" title="Özel Mesaj Gönder">
-                            <i
-                                    class="fa fa-comment"></i> Özel Mesaj
+                            <i class="fa fa-comment"></i> Özel Mesaj
                         </button>
                     </div>
                 @endif
@@ -506,9 +513,15 @@
                     <div class="row">
                         <div class="col-sm-12 heads">
                             <div class="row">
-                                <div class="col-sm-4 bar-choosing active default-active" data-target=".chat-container"><i class="fa fa-comments"></i> Mesajlaşma</div>
-                                <div class="col-sm-4 bar-choosing" data-target=".client-info-container"><i class="fa fa-info-circle"></i> Ziyaretçi Bilgileri</div>
-                                <div class="col-sm-4 bar-choosing" data-target=".chat-history-container"><i class="fa fa-clock-o"></i> Konuşma Geçmişi</div>
+                                <div class="col-sm-4 bar-choosing active default-active" data-target=".chat-container">
+                                    <i class="fa fa-comments"></i> Mesajlaşma
+                                </div>
+                                <div class="col-sm-4 bar-choosing" data-target=".client-info-container"><i
+                                            class="fa fa-info-circle"></i> Ziyaretçi Bilgileri
+                                </div>
+                                <div class="col-sm-4 bar-choosing" data-target=".chat-history-container"><i
+                                            class="fa fa-clock-o"></i> Konuşma Geçmişi
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12 grid chat-container bar-choosing-container">
@@ -543,6 +556,70 @@
                 </div>
             </div>
         </div>
+        <!-- history chat screen /end -->
+
+
+        <!-- watch chat screen -->
+        <div class="chat-screen watch-chat right-sidebar clone">
+            <div class="slimscrollright">
+                <div class="rpanel-title">
+                    <div class="client-name pull-left"></div>
+                    <span class="close-chat" title="Görüşmeyi Sonlandır">
+                        <i class="fa fa-close"></i>
+                    </span>
+                    <span class="hide-chat" title="Minimize Et">
+                        <i class="fa fa-minus"></i>
+                    </span>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="r-panel-body">
+                    <div class="row">
+                        <div class="col-sm-12 heads">
+                            <div class="row">
+                                <div class="col-sm-4 bar-choosing active default-active" data-target=".chat-container">
+                                    <i
+                                            class="fa fa-comments"></i> Mesajlaşma
+                                </div>
+                                <div class="col-sm-4 bar-choosing" data-target=".client-info-container"><i
+                                            class="fa fa-info-circle"></i> Ziyaretçi Bilgileri
+                                </div>
+                                <div class="col-sm-4 bar-choosing" data-target=".chat-history-container"><i
+                                            class="fa fa-clock-o"></i> Konuşma Geçmişi
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 grid chat-container bar-choosing-container">
+                            <div class="shortcuts-container" style="display: none;">
+                                <button class="btn btn-danger btn-block close-shortcuts">Kapat <i
+                                            class="fa fa-times-circle"></i></button>
+                                <ul>
+                                </ul>
+                            </div>
+                            <div class="messages">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 client-info-container bar-choosing-container">
+                            <div class="col-sm-12 grid grid2 client-infos">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 chat-history-container bar-choosing-container">
+                            <div class="col-sm-12 grid grid2">
+                                <div class="history-messages-container">
+                                    <div id="accordion" class="col-sm-12">
+                                        <div class="row">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- watch chat screen /end -->
     </div>
-    <!-- history chat screen /end -->
 @endsection

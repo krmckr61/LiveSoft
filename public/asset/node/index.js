@@ -187,6 +187,10 @@ Node.prototype.initSockets = function () {
         Chat.setCurrentTime(date);
     });
 
+    this.socket.on('watchChat', function (visit) {
+        Chat.addWatchChat(visit);
+    });
+
 };
 
 Node.prototype.takeClient = function (id) {
@@ -243,4 +247,12 @@ Node.prototype.joinVisit = function (clientId) {
 
 Node.prototype.getCurrentTime = function () {
     this.socket.emit('getCurrentTime');
+};
+
+Node.prototype.watchChat = function (id) {
+    this.socket.emit('watchChat', id);
+};
+
+Node.prototype.logoutRoom = function (id) {
+    this.socket.emit('logoutRoom', id);
 };

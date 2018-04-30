@@ -554,24 +554,24 @@ i.facebook-loggedin-client-icon {
 table tr.active-table-row td {
     background-color:#adecf1 !important;
 }
-.history-chat {
+.history-chat, .watch-chat {
     width:30% !important;
 }
-.history-chat .client-info-container, .history-chat .chat-history-container {
+.history-chat .client-info-container, .history-chat .chat-history-container, .watch-chat .client-info-container, .watch-chat .chat-history-container {
     display:none;
 }
-.history-chat .messages {
+.history-chat .messages, .watch-chat .messages {
     height:100%;
     top:0px;
 }
-.history-chat .grid.grid2 {
+.history-chat .grid.grid2, .watch-chat .grid.grid2 {
     padding-top:0px;
 }
-.history-chat .r-panel-body {
+.history-chat .r-panel-body, .watch-chat .r-panel-body {
     background-color:#fff;
     border-left: solid 3px #62c1c8;
 }
-.history-chat .heads .bar-choosing {
+.history-chat .heads .bar-choosing, .watch-chat .heads .bar-choosing  {
     padding:10px;
     background-color:#fff;
     color:#000;
@@ -580,10 +580,10 @@ table tr.active-table-row td {
     cursor:pointer;
     border: solid 3px #eeeeef;
 }
-.history-chat .heads .bar-choosing:last-child {
+.history-chat .heads .bar-choosing:last-child, .watch-chat .heads .bar-choosing:last-child {
     border-right: solid 3px #eeeeef;
 }
-.history-chat .heads .bar-choosing.active {
+.history-chat .heads .bar-choosing.active, .watch-chat .heads .bar-choosing.active {
     background-color:#62c1c8;
     color:#fff;
 }
