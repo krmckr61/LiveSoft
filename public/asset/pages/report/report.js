@@ -133,6 +133,14 @@ Report.prototype.initBlockedWords = function (faultyMessages) {
         for (var i = 0; i < faultyMessages.length; i++) {
             this.addBlockedWordRow(faultyMessages[i]['name'], faultyMessages[i]['text'], faultyMessages[i]['created_at']);
         }
+        this.setUrlsInElem($("#BlockedWords"));
+    }
+};
+
+Report.prototype.setUrlsInElem = function (elem) {
+    for(var i = 0; i < elem.find("a").length; i++) {
+        var link = elem.find("a:eq(" + i + ")");
+        link.attr('href', getDomainWithoutSlash() + link.attr('href'));
     }
 };
 
@@ -143,6 +151,7 @@ Report.prototype.initLowScoreVisits = function (lowScoreVisits) {
             var visit = lowScoreVisits[i];
             this.addLowScoreVisitRow(visit.username, visit.point, visit.id);
         }
+        this.setUrlsInElem($("#LowScoreVisits"));
     }
 };
 
@@ -185,9 +194,10 @@ Report.prototype.reportToExcell = function () {
             })
         }
     return function () {
-        var name = new moment().format('YYYY-MM-DD');
+        var name = 'download.xls';
+
         var html = document.getElementById('ReportTable').innerHTML + document.getElementById('BlockedWords').innerHTML + document.getElementById('LowScoreVisits').innerHTML;
-        var ctx = {worksheet: name, table: html}
+        var ctx = {worksheet: 'Worksheet', table: html};
         window.location.href = uri + base64(format(template, ctx))
     }
 }();

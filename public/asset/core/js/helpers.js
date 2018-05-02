@@ -17,6 +17,10 @@ function getDomain() {
     return 'http://' + window.location.hostname + '/';
 }
 
+function getDomainWithoutSlash() {
+    return 'http://' + window.location.hostname;
+}
+
 function confirmation(title, url, text, type) {
     if (!type) {
         type = 'warning';
