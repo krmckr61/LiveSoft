@@ -46,25 +46,26 @@ Chat.open = function (id) {
 };
 
 Chat.addChat = function (row, open) {
-    var minimizeChat = $("#Clones .min-message.clone").clone(true);
-    minimizeChat.find('.text').html(row.data.NameSurname);
-    minimizeChat.removeClass('clone');
-    minimizeChat.attr('data-id', row.id);
+    if($(".min-message-container .min-message[data-id='" + row.id + "']").length < 1) {
+        var minimizeChat = $("#Clones .min-message.clone").clone(true);
+        minimizeChat.find('.text').html(row.data.NameSurname);
+        minimizeChat.removeClass('clone');
+        minimizeChat.attr('data-id', row.id);
 
-    $(".min-message-container").append(minimizeChat);
+        $(".min-message-container").append(minimizeChat);
 
-    var chatScreen = $("#Clones .chat-screen.current-chat.clone").clone(true);
-    chatScreen.find(".rpanel-title .client-name").html(row.data.NameSurname);
-    chatScreen.removeClass('clone');
-    chatScreen.attr('data-id', row.id);
-    chatScreen.attr('data-clientid', row.data.id);
-    chatScreen.find('#accordion').attr('id', "accordion" + row.id)
-    $(".chat-screen-container").append(chatScreen);
+        var chatScreen = $("#Clones .chat-screen.current-chat.clone").clone(true);
+        chatScreen.find(".rpanel-title .client-name").html(row.data.NameSurname);
+        chatScreen.removeClass('clone');
+        chatScreen.attr('data-id', row.id);
+        chatScreen.attr('data-clientid', row.data.id);
+        chatScreen.find('#accordion').attr('id', "accordion" + row.id)
+        $(".chat-screen-container").append(chatScreen);
 
-    Chat.setClientInfo(row.id, row.data);
+        Chat.setClientInfo(row.id, row.data);
 
-    this.initPlugins(row.id);
-
+        this.initPlugins(row.id);
+    }
     if (open) {
         this.open(row.id);
         $(".chat-screen[data-id='" + row.id + "'] .text-editor").data('wysihtml5').editor.focus();

@@ -60,6 +60,7 @@ table.addClient = function (client) {
     if (client.status !== 0) {
         return this.addConnectClient(client);
     } else {
+        this.clientTable.row("#" + client.id).remove().draw();
         var tableData = [];
         if (client.data.banned) {
             tableData.push('<i class="fa fa-ban" title="Engellemiş kullanıcı"></i>');
@@ -152,6 +153,7 @@ table.setOnlineSatus = function (data) {
 };
 
 table.addConnectClient = function (client) {
+    this.loginClientTable.row("#" + client.id).remove().draw();
     var tableData = [];
     tableData.push('<button class="btn btn-circle btn-success open-client-detail" data-id="' + client.id + '"><textarea class="hidden">' + JSON.stringify(client.data) + '</textarea><i class="fa fa-plus"></i></button>');
     if (client.status === 1) {
