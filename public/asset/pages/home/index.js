@@ -179,7 +179,14 @@ $(document).ready(function () {
     $("#LoginVisitorTable").on('click', '.join-chat', function () {
         var id = $(this).attr('data-id');
         if (confirm('Bu görüşmeye katılmak istediğinize emin misiniz ?')) {
-            node.joinVisit(id);
+            if($(".watch-chat[data-clientid='" + id + "']").length > 0) {
+                $(".watch-chat[data-clientid='" + id + "'] .rpanel-title .close-chat").trigger('click');
+                setTimeout(function () {
+                    node.joinVisit(id);
+                }, 100);
+            } else {
+                node.joinVisit(id);
+            }
         }
     });
 
@@ -225,7 +232,7 @@ $(document).ready(function () {
         container.find(target).show();
     });
 
-    $(".mega-dropdown li a").on('click', function (e) {
+    $(".mega-dropdown li a, .dropdown-menu.dropdown-user li a").on('click', function (e) {
         if (Chat.hasActiveChat()) {
             e.preventDefault();
             var href = $(this).attr('href');
@@ -237,7 +244,7 @@ $(document).ready(function () {
 
     setInterval(function () {
         node.getCurrentTime();
-    }, 60000);
+    }, 30000);
 
 });
 

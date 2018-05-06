@@ -47,15 +47,6 @@
 <!-- Top Navigation -->
 <nav class="navbar navbar-default navbar-static-top m-b-0">
     <div class="navbar-header">
-        <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)"
-           data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-        <div class="top-left-part">
-
-        </div>
-        <ul class="nav navbar-top-links navbar-left hidden-xs">
-            <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i
-                            class="icon-arrow-left-circle ti-menu"></i></a></li>
-        </ul>
         <ul class="nav navbar-top-links navbar-right pull-right">
             <!-- /.dropdown -->
 
@@ -63,7 +54,7 @@
 
                 <li class="mega-dropdown">
                     <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"
-                       aria-expanded="true"><span class="hidden-xs">MENU</span><i class="icon-options-vertical"></i></a>
+                       aria-expanded="true"><span>MENU</span><i class="icon-options-vertical"></i></a>
                     <ul class="dropdown-menu mega-dropdown-menu animated bounceInDown">
 
                         @if(Auth::user()->can('role') || Auth::user()->can('user') || Auth::user()->can('shift'))
@@ -178,7 +169,7 @@
             @endif
             <li class="dropdown">
                 <a class="dropdown-toggle profile-pic user-detail-bar" data-toggle="dropdown" href="#">
-                    <b class="hidden-xs" data-id="{!! Auth::user()->id !!}"
+                    <b data-id="{!! Auth::user()->id !!}"
                        data-online="{!! Auth::user()->onlinestatus !!}">{!! Auth::user()->name !!}</b>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated flipInY">
@@ -196,7 +187,7 @@
                 <!-- /.dropdown-user -->
             </li>
 
-            <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-settings"></i></a></li>
+            <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-palette"></i></a></li>
 
 
         <!-- /.dropdown -->
@@ -209,7 +200,7 @@
 <!-- End Top Navigation -->
 <!-- Left navbar-header -->
 <div class="navbar-default sidebar" role="navigation">
-    <div class="sidebar-nav navbar-collapse">
+    <div class="sidebar-nav navbar-menu" aria-expanded="false">
         <ul class="nav" id="side-menu">
             @if(Auth::user()->can('liveSupport'))
                 <li>
@@ -273,7 +264,7 @@
 <!-- .right-sidebar -->
 <div class="right-sidebar color-schema">
     <div class="slimscrollright">
-        <div class="rpanel-title"> Renk Seçenekleri <span><i class="ti-close right-side-toggle"></i></span> </div>
+        <div class="rpanel-title"> <i class="ti-palette"></i> Renk Seçenekleri <span><i class="ti-close right-side-toggle"></i></span> </div>
         <div class="r-panel-body">
             <ul id="themecolors">
                 <li><a href="javascript:void(0)" theme="default" class="default-theme">1</a></li>

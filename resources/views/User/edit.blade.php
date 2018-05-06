@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title') Kullanıcı Düzenle @endsection
+@section('title') Personel Düzenle @endsection
 @section('breadcrumb')
-    <li><a href="{!! url('users') !!}">Kullanıcılar</a></li>
+    <li><a href="{!! url('users') !!}">Personeller</a></li>
     <li class="active"><i class="fa fa-pencil-square-o"></i> Düzenle</li>
 @endsection
 @section('js')

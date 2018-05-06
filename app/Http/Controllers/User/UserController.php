@@ -38,7 +38,7 @@ class UserController extends Controller
 
     public function edit($id, Request $request)
     {
-        if ($id == Auth::user()->id) {
+        if ($id == Auth::user()->id && !Auth::user()->hasRole('super-admin')) {
             return redirect(url('users'));
         }
         $user = User::get($id);
@@ -138,6 +138,10 @@ class UserController extends Controller
 
     public function delete($id, Request $request)
     {
+        if($id == Auth::user()->id) {
+            $request->session()->flash('alert', ['type' => 'danger', 'message' => 'Sistemden kendi hesabınızı silemezsiniz.']);
+            return redirect(url('/users'));
+        }
         $user = User::get($id);
         if ($user) {
             $user->status = '2';
@@ -169,7 +173,9 @@ class UserController extends Controller
             ['href' => 'javascript:confirmation(\'Bu kullanıcıyı silmek istediğinize emin misiniz ?\', \'/users/delete/{#id#}\')', 'color' => 'danger', 'text' => 'Sil', 'icon' => 'fa-trash-o'],
         ];
         $ds->wheres[] = ['status', '1'];
-        $ds->wheres[] = ['id', '!=', Auth::user()->id];
+        if(!Auth::user()->hasRole('super-admin')) {
+            $ds->wheres[] = ['id', '!=', Auth::user()->id];
+        }
         return $ds->getDatas($_POST);
     }
 

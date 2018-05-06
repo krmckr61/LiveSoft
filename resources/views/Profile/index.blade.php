@@ -10,7 +10,8 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="white-box">
-                <form action="{!! url('profile/update') !!}" method="POST" class="form-material form-horizontal" data-toggle="validator" novalidate="true">
+                <form action="{!! url('profile/update') !!}" method="POST" class="form-material form-horizontal"
+                      data-toggle="validator" novalidate="true">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label class="col-md-12">Adı, Soyadı</label>
@@ -54,11 +55,8 @@
         <p class="ribbon-content">
             @if(count($userRoles) > 0)
                 @foreach($userRoles as $key => $userRole)
-                    <span class="label label-rouded label-info">
+                    <span class="label label-rouded label-info" style="margin-right:5px">
                     {!! $userRole->display_name !!}
-                        @if($key + 1 != count($userRoles))
-                            &nbsp;,
-                        @endif
                     </span>
                 @endforeach
             @endif

@@ -67,7 +67,6 @@ Node.prototype.initSockets = function () {
     });
 
     this.socket.on('getMessage', function (data) {
-        console.log(data);
         Chat.loadMessage(data);
         if ($(".min-message-container .min-message[data-id='" + data.visitid + "']").hasClass("active") && data.sender != "2") {
             self.readMessages(data.visitid);

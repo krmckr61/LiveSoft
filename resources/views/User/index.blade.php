@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title') Kullanıcılar @endsection
+@section('title') Personeller @endsection
 @section('breadcrumb')
-    <li class="active">Kullanıcılar</li>
+    <li class="active">Personeller</li>
 @endsection
 @section('css')
     <link href="/asset/plugins/datatable/css/datatables.min.css" rel="stylesheet" type="text/css"/>
