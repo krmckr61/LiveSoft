@@ -90,12 +90,12 @@ class ReportController extends Controller
         $string = '';
         if($seconds && $seconds > 0) {
             if ($seconds >= 3600) {
-                $string .= round($seconds / 3600) . ' saat ';
+                $string .= ceil($seconds / 3600) . ' saat ';
                 $seconds = $seconds % 3600;
             }
 
             if ($seconds >= 60) {
-                $string .= round($seconds / 60) . ' dakika ';
+                $string .= ceil($seconds / 60) . ' dakika ';
                 $seconds = $seconds % 60;
             }
 
