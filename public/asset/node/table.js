@@ -355,14 +355,12 @@ table.getTodayTimestamp = function () {
 };
 
 table.setUsers = function (users) {
-    table.clearUserTable();
     if (users.length > 0) {
         for (var i = 0; i < users.length; i++) {
             var user = users[i];
             table.addUserRow(user);
         }
     }
-    node.getCurrentTime();
 };
 
 table.clearUserTable = function () {
