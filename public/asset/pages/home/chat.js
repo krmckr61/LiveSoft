@@ -284,7 +284,7 @@ Chat.initPlugins = function (id) {
 
     setTimeout(function(){
         Chat.setShortcuts(id);
-    }, 150);
+    }, 500);
 
     var json = JSON.parse($("#PreparedContents").html());
     $('.chat-screen[data-id="' + id + '"] .prepared-messages').treeview({
