@@ -104,7 +104,7 @@ class ShiftController extends Controller
     {
         $shift = Shift::find($id);
         if ($shift) {
-            $startDate = $request->input('startdate');
+            $startDate = date('YYYY-MM-DD', strtotime($request->input('startdate')));
             $workTime = $request->input('worktime');
             $breakTime = $request->input('breaktime');
             $roleId = $request->input('roleid');
