@@ -323,6 +323,14 @@ Chat.setShortcuts = function (id) {
         return false;
     });
 
+
+    $('.chat-screen[data-id="' + id + '"] .wysihtml5-sandbox').contents().find('body').on("keydown", null, 'esc', function (e) {
+        e.preventDefault();
+        var id = $(".min-message-container .min-message.active").attr('data-id');
+        Chat.hideChatScreen(id);
+        return false;
+    });
+
     $('.chat-screen[data-id="' + id + '"] .wysihtml5-sandbox').contents().find('body').on("keydown", null, 'tab', function (e) {
         e.preventDefault();
         var value = $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.getValue().replace(/<(.|\n)*?>/g, '');

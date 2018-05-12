@@ -183,7 +183,6 @@ table.addConnectClient = function (client) {
     this.loginClientTable.row.add(tableData).node().id = client.id;
     this.loginClientTable.draw(false);
 
-
     if (client.status === 1) {
         this.audio.play();
         this.pulseRow(this.loginClientTableSelector.find('#' + client.id));

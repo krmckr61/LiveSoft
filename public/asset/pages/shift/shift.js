@@ -285,7 +285,7 @@ Shift.prototype.initForms = function () {
     var $this = this;
 
     this.modal.find('input[name=startdate]').datetimepicker({
-        "format": 'DD-MM-YYYY H:mm',
+        "format": 'YYYY-MM-DD H:mm',
         minDate: moment()
     });
 

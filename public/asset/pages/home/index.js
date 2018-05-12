@@ -106,8 +106,13 @@ $(document).ready(function () {
     });
 
     $(document).on("keydown", null, 'esc', function () {
-        $(".chat-screen-container .chat-screen .close-shortcuts").click();
-        Chat.focusTextEditor();
+        if ($(".chat-screen-container .chat-screen .close-shortcuts").is(':visible')) {
+            $(".chat-screen-container .chat-screen .close-shortcuts").click();
+            Chat.focusTextEditor();
+        } else {
+            var id = $(".min-message-container .min-message.active").attr('data-id');
+            Chat.hideChatScreen(id);
+        }
     });
 
     $(".chat-screen-container").on("click", ".chat-screen .close-shortcuts", function () {
@@ -163,7 +168,7 @@ $(document).ready(function () {
 
     $("#LoginVisitorTable").on('click', '.watch-chat-button', function () {
         var id = $(this).attr('data-id');
-        if(id) {
+        if (id) {
             $("#LoginVisitorTable tr#" + id).addClass('active-table-row');
             node.watchChat(id);
         }
@@ -179,7 +184,7 @@ $(document).ready(function () {
     $("#LoginVisitorTable").on('click', '.join-chat', function () {
         var id = $(this).attr('data-id');
         if (confirm('Bu görüşmeye katılmak istediğinize emin misiniz ?')) {
-            if($(".watch-chat[data-clientid='" + id + "']").length > 0) {
+            if ($(".watch-chat[data-clientid='" + id + "']").length > 0) {
                 $(".watch-chat[data-clientid='" + id + "'] .rpanel-title .close-chat").trigger('click');
                 setTimeout(function () {
                     node.joinVisit(id);
@@ -208,17 +213,17 @@ $(document).ready(function () {
     });
 
     $(document).on('keydown', null, 'down', function (e) {
-        if($(".chat-screen-container .chat-screen.shw-rside").hasClass('history-chat')) {
+        if ($(".chat-screen-container .chat-screen.shw-rside").hasClass('history-chat')) {
             Chat.showNextHistoryChat(e);
-        } else if($(".chat-screen-container .chat-screen.shw-rside").hasClass('watch-chat')) {
+        } else if ($(".chat-screen-container .chat-screen.shw-rside").hasClass('watch-chat')) {
             Chat.showNextWatchChat(e);
         }
     });
 
     $(document).on('keydown', null, 'up', function (e) {
-        if($(".chat-screen-container .chat-screen.shw-rside").hasClass('history-chat')) {
+        if ($(".chat-screen-container .chat-screen.shw-rside").hasClass('history-chat')) {
             Chat.showPrevHistoryChat(e);
-        } else if($(".chat-screen-container .chat-screen.shw-rside").hasClass('watch-chat')) {
+        } else if ($(".chat-screen-container .chat-screen.shw-rside").hasClass('watch-chat')) {
             Chat.showPrevWatchChat(e);
         }
     });
