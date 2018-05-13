@@ -46,7 +46,7 @@ Chat.open = function (id) {
 };
 
 Chat.addChat = function (row, open) {
-    if($(".min-message-container .min-message[data-id='" + row.id + "']").length < 1) {
+    if ($(".min-message-container .min-message[data-id='" + row.id + "']").length < 1) {
         var minimizeChat = $("#Clones .min-message.clone").clone(true);
         minimizeChat.find('.text').html(row.data.NameSurname);
         minimizeChat.removeClass('clone');
@@ -282,7 +282,7 @@ Chat.initPlugins = function (id) {
         "stylesheets": false
     });
 
-    setTimeout(function(){
+    setTimeout(function () {
         Chat.setShortcuts(id);
     }, 500);
 
@@ -469,7 +469,7 @@ Chat.resetUnreadMessageCount = function (id) {
 };
 
 Chat.setScrollbar = function (visitid) {
-    if ($(".chat-screen[data-id='" + visitid + "']")) {
+    if ($(".chat-screen[data-id='" + visitid + "'] .messages").length > 0) {
         $(".chat-screen[data-id='" + visitid + "'] .messages")[0].scrollTop = $(".chat-screen[data-id='" + visitid + "'] .messages")[0].scrollHeight;
     }
 };
@@ -485,8 +485,10 @@ Chat.getSendingMessage = function (elem) {
 };
 
 Chat.clearText = function (id) {
-    $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.setValue('');
-    $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.focus();
+    if ($(".chat-screen[data-id='" + id + "'] .text-editor").length > 0) {
+        $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.setValue('');
+        $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.focus();
+    }
 };
 
 Chat.disableChat = function (id) {
@@ -494,7 +496,9 @@ Chat.disableChat = function (id) {
     $(".min-message-container .min-message[data-id='" + id + "']").addClass('disabled');
     if (!$(".chat-screen-container .chat-screen[data-id='" + id + "']").hasClass('watch-chat')) {
         this.clearText(id);
-        $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.composer.disable();
+        if ($(".chat-screen[data-id='" + id + "'] .text-editor").length > 0) {
+            $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.composer.disable();
+        }
         $(".chat-screen[data-id='" + id + "'] .message-send").attr('disabled', 'disabled');
     }
 };
