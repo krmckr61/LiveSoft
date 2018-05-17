@@ -218,3 +218,12 @@ body {
 .message-container {
     background-color:#5baaf3;
 }
+.shortcuts-container {
+    background-color: #5baaf3;
+}
+.shortcuts-container ul li {
+    background-color: #3f79a7;
+}
+.shortcuts-container ul li:hover {
+    background-color: #305c80;
+}
