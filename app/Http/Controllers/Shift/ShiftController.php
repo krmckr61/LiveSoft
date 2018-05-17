@@ -104,12 +104,11 @@ class ShiftController extends Controller
     {
         $shift = Shift::find($id);
         if ($shift) {
-            $startDate = date('Y-m-d', strtotime($request->input('startdate')));
+            $startDate = date('Y-m-d H:i', strtotime($request->input('startdate')));
             $workTime = $request->input('worktime');
             $breakTime = $request->input('breaktime');
             $roleId = $request->input('roleid');
             $users = $request->input('userIds');
-
 
             if ($startDate && $workTime && $breakTime && $workTime < 24 && count($users) > 0) {
 
