@@ -41,6 +41,13 @@ Chat.onResizeChatScreen = function (id) {
     }, 50);
 };
 
+Chat.onResizeAllChats = function () {
+    var elems = $(".chat-screen-container .chat-screen");
+    elems.each(function(index){
+        Chat.onResizeChatScreen($(elems[index]).attr('data-id'));
+    });
+};
+
 Chat.open = function (id) {
     $(".min-message-container .min-message[data-id='" + id + "']").trigger('click');
 };

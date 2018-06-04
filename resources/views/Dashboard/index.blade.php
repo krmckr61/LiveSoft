@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title') Ana Sayfa @endsection
 @section('css')
-
     <link href="{!! url('asset/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css') !!}"
           rel="stylesheet" type="text/css"/>
     <link href="{!! url('asset/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css') !!}"

@@ -11,7 +11,7 @@ class BannedUser extends Model
 
     public static function get($id)
     {
-        return self::select('banneduser.id', 'banneduser.clientid', 'users.name', 'banneduser.date', 'banneduser.created_at', 'banneduser.seen')->join('users', 'banneduser.userid', '=', 'users.id')->where('banneduser.id', $id)->first();
+        return self::select('banneduser.id', 'banneduser.clientid', 'users.id as banuserid', 'users.name', 'banneduser.date', 'banneduser.created_at', 'banneduser.seen')->join('users', 'banneduser.userid', '=', 'users.id')->where('banneduser.id', $id)->first();
     }
 
 }

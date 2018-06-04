@@ -603,6 +603,8 @@ table tr.active-table-row td {
     margin-top:2px;
     display:block;
 }
-@media screen  {
-
+@media screen and (max-width: 928px) {
+    footer {
+        position:fixed !important;
+    }
 }

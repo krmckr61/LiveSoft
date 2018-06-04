@@ -256,3 +256,7 @@ $(document).ready(function () {
 function destroyChat(id) {
     node.destroyChat(id);
 }
+
+$(window).on('resize', function(){
+    Chat.onResizeAllChats();
+});

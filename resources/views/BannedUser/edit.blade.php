@@ -17,7 +17,12 @@
                     <div class="form-group">
                         <label class="col-md-12">Engelleyen Kullanıcı</label>
                         <div class="col-md-12">
-                            {!! $bannedUser->name !!}
+                            @if($bannedUser->banuserid == Auth::user()->id)
+                                <a href="javascript:;" title="Siz">{!! $bannedUser->name !!}</a>
+                            @else
+                                <a href="{!! url('users/edit/' . $bannedUser->banuserid) !!}"
+                                   target="_blank">{!! $bannedUser->name !!}</a>
+                            @endif
                         </div>
                     </div>
                     <div class="form-group">
@@ -38,27 +43,26 @@
                         <label class="col-md-12">Ziyaretçi Bilgileri</label>
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-sm-2">Adı Soyadı : </div>
+                                <div class="col-sm-2">Adı Soyadı :</div>
                                 <div class="col-sm-10">{!! $clientData->NameSurname ? $clientData->NameSurname : 'N/A' !!}</div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-2">Kullanıcı Adı : </div>
+                                <div class="col-sm-2">Kullanıcı Adı :</div>
                                 <div class="col-sm-10">{!! $clientData->UserName ? $clientData->UserName : 'N/A' !!}</div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-2">E-Posta Adresi : </div>
+                                <div class="col-sm-2">E-Posta Adresi :</div>
                                 <div class="col-sm-10">{!! $clientData->Email ? $clientData->Email : 'N/A' !!}</div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-2">Bağlantı Türü : </div>
+                                <div class="col-sm-2">Bağlantı Türü :</div>
                                 <div class="col-sm-10">{!! isset($clientData->FacebookId) ? 'Facebook' : 'Normal' !!}</div>
                             </div>
                         </div>
                     </div>
 
-
-
-                    <a href="{!! url('bannedUsers/delete/' . $bannedUser->id) !!}" class="btn btn-success waves-effect waves-light">
+                    <a href="{!! url('bannedUsers/delete/' . $bannedUser->id) !!}"
+                       class="btn btn-success waves-effect waves-light">
                         <i class="fa fa-check"></i>
                         Engeli Kaldır
                     </a>
