@@ -14,11 +14,11 @@ function getToken() {
 }
 
 function getDomain() {
-    return 'http://' + window.location.hostname + '/';
+    return location.protocol + '//' + window.location.hostname + '/';
 }
 
 function getDomainWithoutSlash() {
-    return 'http://' + window.location.hostname;
+    return location.protocol + '//' + window.location.hostname;
 }
 
 function confirmation(title, url, text, type) {
