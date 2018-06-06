@@ -6,7 +6,7 @@ Node.prototype.init = function () {
     var id = $('meta[name="representationId"]').attr('content');
     var siteCode = $("meta[name='siteId']").attr('content');
     if (id && siteCode) {
-        this.socket = io.connect('http://localhost:3000', {query: 'representativeId=' + id + '&siteId=' + siteCode});
+        this.socket = io.connect('https://server.supsis.test', {query: 'representativeId=' + id + '&siteId=' + siteCode});
         this.initSockets();
     } else {
         alert('Bağlantı hatası');
