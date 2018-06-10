@@ -16,6 +16,7 @@ class CreateBanneduserTable extends Migration
         Schema::create('banneduser', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('userid');
+            $table->integer('siteid');
             $table->integer('clientid');
             $table->string('ipaddress');
             $table->timestamps();

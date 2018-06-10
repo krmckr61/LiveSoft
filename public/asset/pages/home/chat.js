@@ -402,6 +402,7 @@ Chat.toggleChatContainer = function (id) {
 
 Chat.loadMessages = function (data) {
     if (data.messages.length > 0) {
+        $(".chat-screen-container .chat-screen[data-id='" + data.visitid + "'] .messages").html('');
         for (var i = 0; i < data.messages.length; i++) {
             var message = data.messages[i];
             this.loadMessage(message);
