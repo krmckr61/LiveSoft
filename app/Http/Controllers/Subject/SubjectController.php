@@ -76,10 +76,10 @@ class SubjectController extends Controller
 
     public function delete($id, Request $request)
     {
-        $user = User::get($id);
-        if ($user) {
-            $user->status = '2';
-            if ($user->save()) {
+        $subject = Subject::get($id);
+        if ($subject) {
+            $subject->status = '2';
+            if ($subject->save()) {
                 $request->session()->flash('alert', ['type' => 'success', 'message' => 'Silme işlemi başarıyla gerçekleşti.']);
             } else {
                 $request->session()->flash('alert', ['type' => 'warning', 'message' => 'Silme işlemi gerçekleştirilirken hata meydana geldi.']);
@@ -88,7 +88,7 @@ class SubjectController extends Controller
             $request->session()->flash('alert', ['type' => 'warning', 'message' => 'Böyle bir kullanıcı bulunamadı.']);
         }
 
-        return redirect(url('/users'));
+        return redirect(url('/subjects'));
     }
 
     public function getDatas()
