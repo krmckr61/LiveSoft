@@ -17,7 +17,7 @@ class CreateSubjectTable extends Migration
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('description')->nullable();
-            $table->enum('active', ['1', '2'])->default('1');
+            $table->enum('active', ['0', '1'])->default('1');
             $table->enum('status', ['0', '1', '2'])->default('0');
             $table->timestamps();
         });
