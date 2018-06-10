@@ -37,7 +37,7 @@ class PreparedContent extends Model
     }
 
     public static function hasShortCut($id, $letter, $number) {
-        if(self::where([['letter', $letter], ['number', $number], ['id', '!=', $id]])->first()) {
+        if(self::where([['letter', $letter], ['number', $number], ['id', '!=', $id], ['status', '1']])->first()) {
             return true;
         } else {
             return false;

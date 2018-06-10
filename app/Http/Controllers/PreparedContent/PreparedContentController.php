@@ -137,7 +137,7 @@ class PreparedContentController extends Controller
             $content = $request->input('content');
             $letter = $request->input('letter');
             $number = $request->input('number');
-            if ($active && $type && $name && ((!$letter && !$number) || ($number && $letter && !is_numeric($letter) && strlen($letter) == 1 && is_numeric($number)))) {
+            if ($active && $type && $name && ((!$letter && !$number) || (($number || $number == 0) && $letter && !is_numeric($letter) && strlen($letter) == 1 && is_numeric($number)))) {
                 if($letter && $number) {
                     if(PreparedContent::hasShortCut($id, $letter, $number)) {
                         $return = ['type' => 'warning', 'message' => 'Bu kısayol tuşu başka bir içerikte zaten mevcut.'];
