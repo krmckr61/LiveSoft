@@ -102,7 +102,7 @@ class PreparedContentController extends Controller
             }
         }
 
-        return json_encode($preparedContents, JSON_HEX_QUOT | JSON_HEX_TAG);
+        return json_encode($preparedContents, JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT | JSON_HEX_TAG);
 
     }
 
