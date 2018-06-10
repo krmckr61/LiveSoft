@@ -297,6 +297,9 @@ Chat.initPlugins = function (id) {
     $('.chat-screen[data-id="' + id + '"] .prepared-messages').treeview({
         data: json
     });
+    setTimeout(function() {
+        $('.chat-screen[data-id="' + id + '"] .prepared-messages').treeview("collapseAll", { silent: true })
+    }, 100);
 
     $('.chat-screen[data-id="' + id + '"] input.search').on('keyup', function () {
         Chat.searchPreparedContent(id);
