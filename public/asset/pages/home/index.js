@@ -238,12 +238,10 @@ $(document).ready(function () {
     });
 
     $(".mega-dropdown li a, .dropdown-menu.dropdown-user li a").on('click', function (e) {
-        if (Chat.hasActiveChat()) {
+        if($(this).attr('id') != "LogoutLink") {
             e.preventDefault();
             var href = $(this).attr('href');
-            confirmation('Uyarı!', href, 'Mevcut görüşmelerinizi sonlandırmadan bu bağlantıya gitmek istediğinize emin misiniz ?', 'warning');
-        } else {
-            return true;
+            window.open(href, '_blank');
         }
     });
 
@@ -257,6 +255,6 @@ function destroyChat(id) {
     node.destroyChat(id);
 }
 
-$(window).on('resize', function(){
+$(window).on('resize', function () {
     Chat.onResizeAllChats();
 });
