@@ -237,7 +237,7 @@ $(document).ready(function () {
         container.find(target).show();
     });
 
-    $(".mega-dropdown li a, .dropdown-menu.dropdown-user li a").on('click', function (e) {
+    $(".mega-dropdown li a, .dropdown-menu.dropdown-user.dropdown-blank li a").on('click', function (e) {
         if($(this).attr('id') != "LogoutLink") {
             e.preventDefault();
             var href = $(this).attr('href');

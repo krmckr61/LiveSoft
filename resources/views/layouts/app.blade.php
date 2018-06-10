@@ -173,7 +173,7 @@
                     <b data-id="{!! Auth::user()->id !!}"
                        data-online="{!! Auth::user()->onlinestatus !!}">{!! Auth::user()->name !!}</b>
                 </a>
-                <ul class="dropdown-menu dropdown-user animated flipInY">
+                <ul class="dropdown-menu dropdown-user dropdown-blank animated flipInY">
                     <li><a href="{!! url('profile') !!}"><i class="ti-user"></i> Hesap Ayarlarım</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a id="LogoutLink" href="{{ route('logout') }}"
