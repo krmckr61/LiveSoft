@@ -44,4 +44,9 @@ class PreparedContent extends Model
         }
     }
 
+    public static function disableSubContents($topId)
+    {
+        self::where([['topid', $topId], ['status', '1']])->update(['topid' => NULL]);
+    }
+
 }

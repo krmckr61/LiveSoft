@@ -110,6 +110,11 @@ var Content = function () {
         if (cnf) {
             $.post(getDomain() + 'preparedContents/delete/' + id, {_token: getToken()}, function (response) {
                 if (response['type'] && response['type'] == 'success') {
+                    var subContents = $("li[data-id='" + id + "'").find(' > ol.dd-list');
+                    if(subContents.length > 0) {
+                        console.log(123123);
+                        $("div#nestable > ol").append(subContents.html());
+                    }
                     $("li[data-id='" + id + "'").remove();
                     $.toast({
                         heading: 'Başarılı!',

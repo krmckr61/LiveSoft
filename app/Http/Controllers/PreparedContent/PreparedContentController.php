@@ -172,6 +172,7 @@ class PreparedContentController extends Controller
         if ($content) {
             $content->status = '2';
             if ($content->save()) {
+                PreparedContent::disableSubContents($id);
                 $return = ['type' => 'success'];
             } else {
                 $return = ['type' => 'error'];
