@@ -162,12 +162,12 @@
 @section('footer')
     <footer class="footer">
         <div class="row">
-            <div class="col-2">
-                <button class="btn btn-default btn-block btn-take-client" id="WaitingCount" disabled>
-                    <i class="fa fa-spinner"></i> Bekleyen(<span>0</span>)
+            <div class="col-1">
+                <button class="btn btn-default btn-block btn-take-client" id="WaitingCount" title="Bekleyen Ziyaretçi Sayısı" disabled>
+                    <i class="fa fa-user-plus"></i> (<span>0</span>)
                 </button>
             </div>
-            <div class="col-10 relative">
+            <div class="col-11 relative">
                 <div class="min-message-direction direction-left">
                     <i class="fa fa-arrow-circle-left"></i>
                 </div>
