@@ -244,6 +244,7 @@ table.setListeners = function () {
             row.child.hide();
             tr.removeClass('shown');
         } else {
+            $("#LoginVisitorTable .open-client-detail i.fa.fa-minus").parent().click();
             $(this).find("i").removeClass('fa-plus').addClass('fa-minus');
             var data = self.getChildData($(this).attr('data-id'), $(this).find('textarea').html());
             row.child(data).show();
