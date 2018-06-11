@@ -36,9 +36,9 @@
         <div class="white-box">
             <form class="form-horizontal form-material" id="loginform" action="{{ route('login') }}" method="POST">
                 {{csrf_field()}}
-                <a href="javascript:void(0)" class="text-center db"><img
-                            src="/asset/plugins/images/eliteadmin-logo-dark.png" alt="Home"/>
-                    <br/><img src="/asset/plugins/images/eliteadmin-text-dark.png" alt="Home"/></a>
+                <a href="javascript:void(0)" class="text-center db"><img style="margin-top:10px"
+                            src="/asset/plugins/images/supsis-logo.png" alt="Home"/>
+                    </a>
                 <div class="form-group m-t-40{{ $errors->has('email') ? ' has-error' : '' }}">
                     <div class="col-xs-12">
                         <input class="form-control" type="email" name="email" value="{{ old('email') }}" required=""
