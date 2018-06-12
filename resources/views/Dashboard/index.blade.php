@@ -31,7 +31,7 @@
     <script type="text/javascript" src="{!! url('asset/pages/home/index.js') !!}"></script>
 @endsection
 @section('content')
-    <audio id="Audio" src="/sounds/client.mp3"></audio>
+    <audio id="Audio" src="/sounds/client2.mp3"></audio>
     <audio id="NewMessageAudio" src="/sounds/new-message.mp3"></audio>
     <audio id="NotificationAudio" src="/sounds/notification.mp3"></audio>
     <section id="LiveSection">
