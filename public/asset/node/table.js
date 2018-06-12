@@ -185,7 +185,9 @@ table.addConnectClient = function (client) {
 
     if (client.status === 1) {
         this.audio.play();
-        this.audio.play();
+        setTimeout(function(){
+            table.audio.play();
+        }, 650);
         this.pulseRow(this.loginClientTableSelector.find('#' + client.id));
     }
 
