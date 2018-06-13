@@ -187,6 +187,12 @@ table.addConnectClient = function (client) {
         this.audio.play();
         setTimeout(function(){
             table.audio.play();
+            setTimeout(function(){
+                table.audio.play();
+                setTimeout(function(){
+                    table.audio.play();
+                }, 650);
+            }, 650);
         }, 650);
         this.pulseRow(this.loginClientTableSelector.find('#' + client.id));
     }
