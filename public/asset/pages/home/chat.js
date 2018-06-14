@@ -1,18 +1,20 @@
 var Chat = {
-    chatId: false,
-    textEditors: [],
-    user: {
-        name: $("li>a.dropdown-toggle.profile-pic b").html(),
-        id: $("li>a.dropdown-toggle.profile-pic b").attr('data-id'),
-        online: $("li>a.dropdown-toggle.profile-pic b").attr('data-online')
-    },
-    userStatus: {
-        1: {text: 'Hemen Dönecek', icon: "fa fa-clock-o"},
-        2: {text: 'Çevrimiçi', icon: "fa fa-check-circle"},
-        3: {text: 'Meşgul', icon: "fa fa-minus-circle"},
-    },
-    lastSendNumber: 1,
-};
+        chatId: false,
+        textEditors: [],
+        user: {
+            name: $("li>a.dropdown-toggle.profile-pic b").html(),
+            id: $("li>a.dropdown-toggle.profile-pic b").attr('data-id'),
+            online: $("li>a.dropdown-toggle.profile-pic b").attr('data-online')
+        },
+        userStatus: {
+            1: {text: 'Hemen Dönecek', icon: "fa fa-clock-o"},
+            2: {text: 'Çevrimiçi', icon: "fa fa-check-circle"},
+            3: {text: 'Meşgul', icon: "fa fa-minus-circle"},
+        },
+        tabActive: true,
+        lastSendNumber: 1,
+    }
+;
 
 Chat.setStatus = function (onlineStatus) {
     var elem = $("li.user-status-menu ul > li[data-id='" + onlineStatus + "']")
@@ -43,7 +45,7 @@ Chat.onResizeChatScreen = function (id) {
 
 Chat.onResizeAllChats = function () {
     var elems = $(".chat-screen-container .chat-screen");
-    elems.each(function(index){
+    elems.each(function (index) {
         Chat.onResizeChatScreen($(elems[index]).attr('data-id'));
     });
 };
@@ -297,8 +299,8 @@ Chat.initPlugins = function (id) {
     $('.chat-screen[data-id="' + id + '"] .prepared-messages').treeview({
         data: json
     });
-    setTimeout(function() {
-        $('.chat-screen[data-id="' + id + '"] .prepared-messages').treeview("collapseAll", { silent: true })
+    setTimeout(function () {
+        $('.chat-screen[data-id="' + id + '"] .prepared-messages').treeview("collapseAll", {silent: true})
     }, 100);
 
     $('.chat-screen[data-id="' + id + '"] input.search').on('keyup', function () {
@@ -436,7 +438,7 @@ Chat.loadMessage = function (message) {
     $(".chat-screen[data-id='" + message.visitid + "'] .messages").append(elem);
 
     Chat.setScrollbar(message.visitid);
-    if (!$(".min-message-container .min-message[data-id='" + message.visitid + "']").hasClass("active") && message.sender != "2") {
+    if ((!$(".min-message-container .min-message[data-id='" + message.visitid + "']").hasClass("active") && message.sender != "2") || (!this.tabActive && message.sender != "2")) {
         if (message.seen == '0') {
             if (!$(".min-message[data-id='" + message.visitid + "']").hasClass('has-message')) {
                 $(".min-message[data-id='" + message.visitid + "']").addClass('has-message');

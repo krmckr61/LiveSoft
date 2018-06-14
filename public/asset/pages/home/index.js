@@ -258,3 +258,11 @@ function destroyChat(id) {
 $(window).on('resize', function () {
     Chat.onResizeAllChats();
 });
+
+$(window).blur(function () {
+    Chat.tabActive = false;
+});
+
+$(window).focus(function () {
+    Chat.tabActive = true;
+});
