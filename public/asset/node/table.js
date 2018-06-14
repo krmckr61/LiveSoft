@@ -191,8 +191,6 @@ table.addConnectClient = function (client) {
             console.log(e);
         }
         this.pulseRow(this.loginClientTableSelector.find('#' + client.id));
-    } else {
-        console.log(client);
     }
 
     this.updateClientCounts();
