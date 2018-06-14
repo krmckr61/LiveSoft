@@ -34,7 +34,7 @@ table.init = function () {
     this.userTable = this.userTableSelector.DataTable();
     this.userListTableSelector = $("#UserListModal table");
     this.userListTable = this.userListTableSelector.DataTable();
-    this.audio = document.getElementById('Audio');
+    this.audio = new Audio('/sounds/client2.mp3');
     this.visitorCount = 0;
     this.liveCount = 0;
     this.setListeners();
@@ -184,8 +184,15 @@ table.addConnectClient = function (client) {
     this.loginClientTable.draw(false);
 
     if (client.status === 1) {
-        this.audio.play();
+        try {
+            var audio = new Audio('/sounds/client2.mp3');
+            audio.play();
+        } catch (e) {
+            console.log(e);
+        }
         this.pulseRow(this.loginClientTableSelector.find('#' + client.id));
+    } else {
+        console.log(client);
     }
 
     this.updateClientCounts();
