@@ -444,15 +444,17 @@ Chat.loadMessage = function (message) {
                 $(".min-message[data-id='" + message.visitid + "']").addClass('has-message');
             }
             Chat.newMessageSound();
-            var unread = $(".min-message-container .min-message[data-id='" + message.visitid + "'] .unread-message-count").html();
-            if (unread) {
-                unread = parseInt(unread);
-                unread++;
-            } else {
-                unread = 1;
+            if(!$(".min-message-container .min-message[data-id='" + message.visitid + "']").hasClass("active")) {
+                var unread = $(".min-message-container .min-message[data-id='" + message.visitid + "'] .unread-message-count").html();
+                if (unread) {
+                    unread = parseInt(unread);
+                    unread++;
+                } else {
+                    unread = 1;
+                }
+                $(".min-message-container .min-message[data-id='" + message.visitid + "'] .unread-message-count").removeClass('hidden').html(unread);
+                this.pulse(message.visitid);
             }
-            $(".min-message-container .min-message[data-id='" + message.visitid + "'] .unread-message-count").removeClass('hidden').html(unread);
-            this.pulse(message.visitid);
         }
     }
 };
