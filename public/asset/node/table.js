@@ -40,6 +40,7 @@ table.init = function () {
     this.setListeners();
     this.setShortcuts();
     this.initResponsive();
+    this.audio = new Audio('/sounds/client2.mp3');
 };
 
 table.initResponsive = function () {
@@ -67,21 +68,22 @@ table.addClient = function (client) {
         } else {
             tableData.push('<i class="fa fa-user"></i>');
         }
-        tableData.push(client.data.location ? '<img src="/asset/image/flags/' + client.data.location.countryCode.toLowerCase() + '.png">' : 'N/A');
-        tableData.push(client.data.location ? client.data.location.city : 'N/A');
+
+        tableData.push(client.data.location && client.data.location.countryCode ? '<img src="/asset/image/flags/' + client.data.location.countryCode.toLowerCase() + '.png">' : 'N/A');
+        tableData.push(client.data.location && client.data.location.city ? client.data.location.city : 'N/A');
         tableData.push(client.data.connectionTime.hour + ':' + client.data.connectionTime.minute);
         var os = getOs(client.data.device.os);
         if (os) {
             tableData.push('<img src="/asset/image/' + os + '.png" title="' + client.data.device.os + '">');
         } else {
-            tableData.push(client.data.device.os);
+            tableData.push(client.data.device.os ? client.data.device.os : 'N/A');
         }
 
         var browser = getBrowser(client.data.device.browser);
         if (browser) {
             tableData.push('<img src="/asset/image/' + browser + '.png" title="' + client.data.device.browser + '">');
         } else {
-            tableData.push(client.data.device.browser);
+            tableData.push(client.data.device.browser ? client.data.device.browser : 'N/A');
         }
         this.clientTable.row.add(tableData).node().id = client.id;
         this.clientTable.draw(false);
@@ -185,8 +187,7 @@ table.addConnectClient = function (client) {
 
     if (client.status === 1) {
         try {
-            var audio = new Audio('/sounds/client2.mp3');
-            audio.play();
+            this.audio.play();
         } catch (e) {
             console.log(e);
         }
