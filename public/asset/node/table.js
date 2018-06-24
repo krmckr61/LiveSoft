@@ -69,10 +69,10 @@ table.addClient = function (client) {
             tableData.push('<i class="fa fa-user"></i>');
         }
 
-        if(client.data.connectionTime.hour < 10) {
+        if (client.data.connectionTime.hour < 10) {
             client.data.connectionTime.hour = '0' + client.data.connectionTime.hour;
         }
-        if(client.data.connectionTime.minute < 10) {
+        if (client.data.connectionTime.minute < 10) {
             client.data.connectionTime.minute = '0' + client.data.connectionTime.minute;
         }
 
@@ -115,7 +115,7 @@ table.addHistoryRow = function (row) {
     tableData.push(row.data.UserName);
     tableData.push(row.data.NameSurname);
     tableData.push(row.data.Email);
-    tableData.push(row.data.location.countryCode);
+    tableData.push(row.data.location && row.data.location.countryCode ? row.data.location.countryCode : 'N/A');
     tableData.push(timestampToDate(row.created_at));
     tableData.push(timestampToDate(row.closed_at));
     tableData.push(secondToTime(row.chattime));
@@ -177,10 +177,10 @@ table.addConnectClient = function (client) {
     tableData.push(client.data.Email ? client.data.Email : 'N/A');
     tableData.push(client.data.location ? '<img src="/asset/image/flags/' + client.data.location.countryCode.toLowerCase() + '.png">' : 'N/A');
 
-    if(client.data.connectionTime.hour < 10) {
+    if (client.data.connectionTime.hour < 10) {
         client.data.connectionTime.hour = '0' + client.data.connectionTime.hour;
     }
-    if(client.data.connectionTime.minute < 10) {
+    if (client.data.connectionTime.minute < 10) {
         client.data.connectionTime.minute = '0' + client.data.connectionTime.minute;
     }
 
