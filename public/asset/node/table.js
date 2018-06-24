@@ -69,6 +69,14 @@ table.addClient = function (client) {
             tableData.push('<i class="fa fa-user"></i>');
         }
 
+        if(client.data.connectionTime.hour < 10) {
+            client.data.connectionTime.hour = '0' + client.data.connectionTime.hour;
+        }
+        if(client.data.connectionTime.minute < 10) {
+            client.data.connectionTime.minute = '0' + client.data.connectionTime.minute;
+        }
+
+
         tableData.push(client.data.location && client.data.location.countryCode ? '<img src="/asset/image/flags/' + client.data.location.countryCode.toLowerCase() + '.png">' : 'N/A');
         tableData.push(client.data.location && client.data.location.city ? client.data.location.city : 'N/A');
         tableData.push(client.data.connectionTime.hour + ':' + client.data.connectionTime.minute);
@@ -168,6 +176,14 @@ table.addConnectClient = function (client) {
     tableData.push(client.data.NameSurname ? client.data.NameSurname : 'N/A');
     tableData.push(client.data.Email ? client.data.Email : 'N/A');
     tableData.push(client.data.location ? '<img src="/asset/image/flags/' + client.data.location.countryCode.toLowerCase() + '.png">' : 'N/A');
+
+    if(client.data.connectionTime.hour < 10) {
+        client.data.connectionTime.hour = '0' + client.data.connectionTime.hour;
+    }
+    if(client.data.connectionTime.minute < 10) {
+        client.data.connectionTime.minute = '0' + client.data.connectionTime.minute;
+    }
+
     tableData.push(client.data.connectionTime.hour + ':' + client.data.connectionTime.minute);
     if (client.status === 2) {
         var userString = '';
