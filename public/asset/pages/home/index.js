@@ -4,6 +4,8 @@ node.init();
 
 $(document).ready(function () {
 
+    $("#VisitorTab .bar.active").click();
+
     var skyInterval;
 
     $(".min-message-direction").on('mousedown', function () {
