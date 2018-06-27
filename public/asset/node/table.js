@@ -419,3 +419,9 @@ table.setUserList = function (visitId, users) {
 table.removeUserFromUserListTable = function (userId) {
     this.userListTable.row("#" + userId).remove().draw();
 };
+
+table.clearSelectedRows = function () {
+    this.historyTableSelector.find('tr.active-table-row').removeClass('active-table-row');
+    this.clientTableSelector.find('tr.active-table-row').removeClass('active-table-row');
+    this.loginClientTableSelector.find('tr.active-table-row').removeClass('active-table-row');
+};

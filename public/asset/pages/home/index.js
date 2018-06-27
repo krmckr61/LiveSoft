@@ -63,6 +63,7 @@ $(document).ready(function () {
 
     $(".chat-screen-container").on("click", 'span.hide-chat', function () {
         var id = $(this).closest('.chat-screen').attr('data-id');
+        table.clearSelectedRows();
         Chat.hideChatScreen(id);
     });
 
@@ -70,6 +71,7 @@ $(document).ready(function () {
         var id = $(this).closest('.chat-screen').attr('data-id');
         var chatScreen = $(".chat-screen-container .chat-screen[data-id='" + id + "']");
         Chat.closeChat(id);
+        table.clearSelectedRows();
     });
 
     $(".chat-screen button.message-send").on("click", function () {
@@ -113,7 +115,7 @@ $(document).ready(function () {
             Chat.focusTextEditor();
         } else {
             var id = $(".min-message-container .min-message.active").attr('data-id');
-            Chat.hideChatScreen(id);
+            $(".chat-screen-container .chat-screen[data-id='" + id + "'] .hide-chat").click();
         }
     });
 
