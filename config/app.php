@@ -17,6 +17,7 @@ return [
     'author' => 'SoftCand',
 
     'siteCode' => '6161',
+    'socketUrl' => 'https://server.supsis.test/',
 
     /*
     |--------------------------------------------------------------------------

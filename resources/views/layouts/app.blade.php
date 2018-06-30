@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{!! csrf_token() !!}">
     <meta name="siteId" content="{!! config('app.siteCode') !!}">
     <meta name="representationId" content="{!! Auth::user()->id !!}">
+    <meta name="socketUrl" content="{!! config('app.socketUrl') !!}">
     <link rel="icon" type="image/png" sizes="16x16" href="{!! url('asset/plugins/images/favicon.png') !!}">
     <title>@yield('title') | {!! config('app.name') !!}</title>
     <!-- Bootstrap Core CSS -->
