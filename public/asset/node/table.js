@@ -175,7 +175,7 @@ table.addConnectClient = function (client) {
     tableData.push(client.data.UserName ? client.data.UserName : 'N/A');
     tableData.push(client.data.NameSurname ? client.data.NameSurname : 'N/A');
     tableData.push(client.data.Email ? client.data.Email : 'N/A');
-    tableData.push(client.data.location ? '<img src="/asset/image/flags/' + client.data.location.countryCode.toLowerCase() + '.png">' : 'N/A');
+    tableData.push(client.data.location && client.data.location.countryCode ? '<img src="/asset/image/flags/' + client.data.location.countryCode.toLowerCase() + '.png">' : 'N/A');
 
     if (client.data.connectionTime.hour < 10) {
         client.data.connectionTime.hour = '0' + client.data.connectionTime.hour;
