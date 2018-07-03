@@ -25,7 +25,7 @@
     <script src="{!! url('asset/plugins/bower_components/jquery.pulsate/jquery.pulsate.min.js') !!}"></script>
     <script type="text/javascript" src="{!! url('asset/js/cbpFWTabs.js') !!}"></script>
     <script src="{!! config('app.socketUrl') . 'socket.io/socket.io.js' !!}"></script>
-    <script src="{!! url('asset/node/table.js?v=1.1') !!}"></script>
+    <script src="{!! url('asset/node/table.js?v=1.2') !!}"></script>
     <script src="{!! url('asset/node/index.js?v=1.1') !!}"></script>
     <script src="{!! url('asset/pages/home/chat.js?v=1.1') !!}"></script>
     <script type="text/javascript" src="{!! url('asset/pages/home/index.js?v=1.1') !!}"></script>
