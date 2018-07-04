@@ -27,8 +27,10 @@
             }
         };
         $('#nestable').nestable({
-            group: 1
+            group: 1,
         }).on('change', updateOutput);
+
+        $("#nestable").nestable('collapseAll');
 
         updateOutput($('#nestable').data('output', $('#nestable-output')));
     </script>
