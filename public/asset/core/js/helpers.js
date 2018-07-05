@@ -125,7 +125,7 @@ function secondToShortTime(second) {
 }
 
 function getBrowser(browserName) {
-    var browsers = ['chrome', 'firefox', 'edge', 'explorer', 'safari', 'yandex', 'opera'];
+    var browsers = ['chrome', 'firefox', 'edge', 'explorer', 'safari', 'yandex', 'opera', 'facebook'];
     for (var i = 0; i < browsers.length; i++) {
         if (browserName.toLowerCase().includes(browsers[i])) {
             return browsers[i];

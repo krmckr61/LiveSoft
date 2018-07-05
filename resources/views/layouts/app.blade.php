@@ -317,7 +317,7 @@
 
 <script src="{!! url('asset/plugins/bower_components/styleswitcher/jQuery.style.switcher.js') !!}"></script>
 
-<script src="{!! url('asset/core/js/helpers.js') !!}"></script>
+<script src="{!! url('asset/core/js/helpers.js?v=1.1') !!}"></script>
 <script src="{!! url('asset/core/js/core.js') !!}"></script>
 
 @yield('js')
