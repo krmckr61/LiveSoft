@@ -125,7 +125,7 @@ function secondToShortTime(second) {
 }
 
 function getBrowser(browserName) {
-    var browsers = ['chrome', 'firefox', 'edge', 'explorer', 'safari', 'yandex', 'opera', 'facebook', 'wkwebview'];
+    var browsers = ['chrome', 'firefox', 'edge', 'explorer', 'safari', 'yandex', 'opera', 'facebook'];
     for (var i = 0; i < browsers.length; i++) {
         if (browserName.toLowerCase().includes(browsers[i])) {
             return browsers[i];
@@ -136,7 +136,7 @@ function getBrowser(browserName) {
 }
 
 function getOs(os) {
-    var oss = ['windows', 'android', 'mac', 'linux', 'ios'];
+    var oss = ['windows', 'android', 'mac', 'linux', 'ios', 'wkwebview'];
     for (var i = 0; i < oss.length; i++) {
         if (os.toLowerCase().includes(oss[i])) {
             return oss[i];
