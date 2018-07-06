@@ -125,9 +125,9 @@ function secondToShortTime(second) {
 }
 
 function getBrowser(browserName) {
-    var browsers = ['chrome', 'firefox', 'edge', 'explorer', 'safari', 'yandex', 'opera', 'facebook'];
+    var browsers = ['chrome', 'firefox', 'edge', 'explorer', 'safari', 'yandex', 'opera', 'facebook', 'samsung-internet'];
     for (var i = 0; i < browsers.length; i++) {
-        if (browserName.toLowerCase().includes(browsers[i])) {
+        if (browserName.toLowerCase().replace(' ', '-').includes(browsers[i])) {
             return browsers[i];
         }
     }
@@ -138,7 +138,7 @@ function getBrowser(browserName) {
 function getOs(os) {
     var oss = ['windows', 'android', 'mac', 'linux', 'ios', 'wkwebview'];
     for (var i = 0; i < oss.length; i++) {
-        if (os.toLowerCase().includes(oss[i])) {
+        if (os.toLowerCase().replace(' ', '-').includes(oss[i])) {
             return oss[i];
         }
     }
