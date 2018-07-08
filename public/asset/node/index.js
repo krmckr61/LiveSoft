@@ -64,7 +64,11 @@ Node.prototype.initSockets = function () {
     });
 
     this.socket.on('talkClient', function (data) {
-        Chat.addChat(data, true);
+        if (!data.autoTake) {
+            Chat.addChat(data, true);
+        } else {
+            Chat.addChat(data, false);
+        }
         table.updateClientCounts();
     });
 
@@ -114,7 +118,7 @@ Node.prototype.initSockets = function () {
     this.socket.on('setOnlineStatus', function (status) {
         Chat.setStatus(status);
     });
-    
+
     this.socket.on('loadRecentVisits', function (data) {
         Chat.loadRecentVisits(data);
     });
@@ -122,13 +126,13 @@ Node.prototype.initSockets = function () {
     this.socket.on('loadRecentVisitMessages', function (data) {
         Chat.loadRecentVisitMessages(data);
     });
-    
+
     this.socket.on('autoTakeClient', function (clientId) {
-        self.takeClient(clientId);
+        self.socket.emit('autoTakeClient', clientId);
     });
-    
+
     this.socket.on('setShortcuts', function (data) {
-        if(data.visitId && data.contents.length > 0) {
+        if (data.visitId && data.contents.length > 0) {
             Chat.setLetterShortcuts(data);
         }
     });
@@ -136,7 +140,7 @@ Node.prototype.initSockets = function () {
     this.socket.on('setUserList', function (data) {
         var users = data.users;
         var visitId = data.visitId;
-        if(users && users.length > 0) {
+        if (users && users.length > 0) {
             table.setUserList(visitId, users);
         } else {
             $.toast({
@@ -149,7 +153,7 @@ Node.prototype.initSockets = function () {
             });
         }
     });
-    
+
     this.socket.on('leaveVisit', function (visitId) {
         Chat.disableChat(visitId);
         Chat.closeChat(visitId);

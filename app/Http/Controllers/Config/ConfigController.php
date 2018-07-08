@@ -26,7 +26,7 @@ class ConfigController extends Controller
 
     public function index()
     {
-        return view('Config.index', ['configs' => Config::get(), 'formFields' => $this->formFields]);
+        return view('Config.index', ['configs' => Config::orderBy('id')->get(), 'formFields' => $this->formFields]);
     }
 
     public function update(Request $request)

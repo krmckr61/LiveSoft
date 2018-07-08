@@ -444,7 +444,7 @@ Chat.loadMessage = function (message) {
                 $(".min-message[data-id='" + message.visitid + "']").addClass('has-message');
             }
             Chat.newMessageSound();
-            if(!$(".min-message-container .min-message[data-id='" + message.visitid + "']").hasClass("active")) {
+            if (!$(".min-message-container .min-message[data-id='" + message.visitid + "']").hasClass("active")) {
                 var unread = $(".min-message-container .min-message[data-id='" + message.visitid + "'] .unread-message-count").html();
                 if (unread) {
                     unread = parseInt(unread);
@@ -842,4 +842,12 @@ Chat.setCurrentTime = function (date) {
         elem.html(string);
         elem2.attr('title', longDate);
     });
+};
+
+Chat.hasCurrentChat = function () {
+    if ($(".chat-screen-container .current-chat").is(':visible')) {
+        return true;
+    } else {
+        return false;
+    }
 };
