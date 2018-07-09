@@ -37,6 +37,8 @@ Node.prototype.initSockets = function () {
         if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
                 var row = data[i];
+                console.log(row.id);
+                self.notWriting(row.id);
                 Chat.addChat(row);
             }
         }
@@ -261,4 +263,12 @@ Node.prototype.watchChat = function (id) {
 
 Node.prototype.logoutRoom = function (id) {
     this.socket.emit('logoutRoom', id);
+};
+
+Node.prototype.writing = function (visitId) {
+    this.socket.emit('writing', visitId);
+};
+
+Node.prototype.notWriting = function (visitId) {
+    this.socket.emit('notWriting', visitId);
 };

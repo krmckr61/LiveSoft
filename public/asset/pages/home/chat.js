@@ -329,6 +329,21 @@ Chat.isDisabled = function (id) {
 };
 
 Chat.setShortcuts = function (id) {
+
+    $('.chat-screen[data-id="' + id + '"] .wysihtml5-sandbox').contents().find('body').on("keyup", function (e) {
+        if (e.keyCode === 13 || $(".chat-screen[data-id='" + id + "'] .text-editor").data('wysihtml5').editor.getValue().trim() === "") {
+            if ($(".chat-screen-container .chat-screen[data-id='" + id + "']").hasClass('writing')) {
+                node.notWriting(id);
+                $(".chat-screen-container .chat-screen[data-id='" + id + "']").removeClass('writing')
+            }
+        } else {
+            if (!$(".chat-screen-container .chat-screen[data-id='" + id + "']").hasClass('writing')) {
+                node.writing(id);
+                $(".chat-screen-container .chat-screen[data-id='" + id + "']").addClass('writing')
+            }
+        }
+    });
+
     $('.chat-screen[data-id="' + id + '"] .wysihtml5-sandbox').contents().find('body').on("keydown", null, 'return', function (e) {
         e.preventDefault();
         $('.chat-screen[data-id="' + id + '"] .send-bar .message-send').trigger('click');
