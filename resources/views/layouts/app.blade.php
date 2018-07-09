@@ -30,7 +30,7 @@
     <link href="{!! url('/asset/plugins/bower_components/custom-select/custom-select.css') !!}" rel="stylesheet"
           type="text/css"/>
 
-    <link href="{!! url('/asset/css/core-style.css') !!}" rel="stylesheet" type="text/css"/>
+    <link href="{!! url('/asset/css/core-style.css?v=1.1') !!}" rel="stylesheet" type="text/css"/>
 
     <link href="" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -317,7 +317,7 @@
 
 <script src="{!! url('asset/plugins/bower_components/styleswitcher/jQuery.style.switcher.js') !!}"></script>
 
-<script src="{!! url('asset/core/js/helpers.js?v=1.4') !!}"></script>
+<script src="{!! url('asset/core/js/helpers.js?v=1.5') !!}"></script>
 <script src="{!! url('asset/core/js/core.js') !!}"></script>
 
 @yield('js')

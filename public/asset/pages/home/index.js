@@ -249,6 +249,12 @@ $(document).ready(function () {
         }
     });
 
+    $(".chat-screen-container").on('click', '.list-group .list-grouo-item.node', function () {
+        if($(this).find('.expand-icon')) {
+            $(this).find('.expand-icon').trigger('click');
+        }
+    });
+
     setInterval(function () {
         node.getCurrentTime();
     }, 30000);
