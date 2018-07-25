@@ -1,3 +1,6 @@
+<?php
+dd(Auth::user());
+?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
